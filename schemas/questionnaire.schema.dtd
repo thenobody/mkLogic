@@ -1,0 +1,46 @@
+<!ELEMENT questionnaire (question)+>
+<!ELEMENT question (#PCDATA|question-group|validation|filtering)*>
+<!ELEMENT question-group (answer-group)*>
+<!ELEMENT answer-group (answer)*>
+<!ELEMENT answer EMPTY>
+<!ELEMENT validation (not-empty|constraint)*>
+<!ELEMENT not-empty EMPTY>
+<!ELEMENT constraint (conformer)*>
+<!ELEMENT conformer EMPTY>
+<!ELEMENT filtering (filter)*>
+<!ELEMENT filter (constraint)+>
+
+<!ATTLIST questionnaire name CDATA #REQUIRED>
+<!ATTLIST questionnaire continuous (true|false) "false">
+
+<!ATTLIST question name CDATA #REQUIRED>
+<!ATTLIST question next-question CDATA #IMPLIED>
+<!ATTLIST question template CDATA #REQUIRED>
+
+<!ATTLIST question-group name CDATA #REQUIRED>
+<!ATTLIST question-group label CDATA #IMPLIED>
+
+<!ATTLIST answer-group name CDATA #REQUIRED>
+<!ATTLIST answer-group type (radio|checkbox|combobox|text) "radio">
+<!ATTLIST answer-group label CDATA #IMPLIED>
+
+<!ATTLIST answer name CDATA #REQUIRED>
+<!ATTLIST answer text (true|false) "false">
+<!ATTLIST answer value CDATA #REQUIRED>
+<!ATTLIST answer label CDATA #IMPLIED>
+
+<!ATTLIST not-empty question-group CDATA #IMPLIED>
+<!ATTLIST not-empty answer-group CDATA #IMPLIED>
+<!ATTLIST not-empty answer CDATA #IMPLIED>
+
+<!ATTLIST constraint type CDATA (constraint|not-empty) "constraint" >
+<!ATTLIST constraint question CDATA #REQUIRED>
+<!ATTLIST constraint question-group CDATA #REQUIRED>
+<!ATTLIST constraint answer-group CDATA #REQUIRED>
+<!ATTLIST constraint answer CDATA #REQUIRED>
+<!ATTLIST constraint not CDATA #IMPLIED>
+
+<!ATTLIST conformer question-group CDATA #REQUIRED>
+<!ATTLIST conformer answer-group CDATA #REQUIRED>
+<!ATTLIST conformer answer CDATA #REQUIRED>
+<!ATTLIST conformer rule (empty|not-empty|equal|not-equal) "equal">

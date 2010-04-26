@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE questionnaire SYSTEM "questionnaire.schema.dtd">
+<questionnaire name="q1-2009-02-16" continuous="true">
+	<question name="q1" next-question="q2" template="radio-vertical">
+		question1 question1 [b]question1[/b] question1
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="" >
+				<answer name="a1" text="false" value="1" label="answer1" />
+				<answer name="a2" text="false" value="2" label="answer2" />
+				<answer name="a3" text="false" value="3" label="answer3" />
+				<answer name="a4" text="true" value="" label="answer4" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<not-empty question-group="qg1" answer-group="ag1" answer="+" />
+		</validation>
+	</question>
+	
+	<question name="q2" next-question="q3" template="radio-table">
+		question2 question2 [b]question2[/b] question2
+		<question-group name="qg1" label="group-label">
+			<answer-group name="ag1" type="radio" label="answer1">
+				<answer name="a1" text="false" value="1" label="value-1" />
+				<answer name="a2" text="false" value="2" label="value-2" />
+				<answer name="a3" text="false" value="3" label="value-3" />
+				<answer name="a4" text="false" value="4" label="value-4" />
+			</answer-group>
+			
+			<answer-group name="ag2" type="radio" label="answer1">
+				<answer name="a1" text="false" value="1" label="value-1" />
+				<answer name="a2" text="false" value="2" label="value-2" />
+				<answer name="a3" text="false" value="3" label="value-3" />
+				<answer name="a4" text="false" value="4" label="value-4" />
+			</answer-group>
+			
+			<answer-group name="ag3" type="radio" label="answer1">
+				<answer name="a1" text="false" value="1" label="value-1" />
+				<answer name="a2" text="false" value="2" label="value-2" />
+				<answer name="a3" text="false" value="3" label="value-3" />
+				<answer name="a4" text="false" value="4" label="value-4" />
+			</answer-group>
+		</question-group>
+		
+		<validation>
+			<not-empty question-group="qg1" answer-group="*" />
+			<constraint question="q1" question-group="qg1" answer-group="ag1" answer="a1">
+				<conformer question-group="qg1" answer-group="ag1" answer="+" rule="not-empty" />
+				<conformer question-group="qg1" answer-group="ag1" answer="a3" rule="not-equal" />
+			</constraint>
+		</validation>
+		
+		<filtering>
+			<filter>
+				<constraint question="q1" question-group="qg1" answer-group="ag1" answer="a2" not="not" />
+			</filter>
+		</filtering>
+	</question>
+
+	<question name="q3" next-question="q4" template="table">
+		question3 question3 [b]question3[/b] question3
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="checkbox" label="answer1a">
+				<answer name="a1" text="false" value="1" label="value-1" />
+			</answer-group>
+			
+			<answer-group name="ag2" type="combobox" label="answer1b">
+				<answer name="a1" text="false" value="1" label="value-1" />
+				<answer name="a2" text="false" value="2" label="value-2" />
+				<answer name="a3" text="false" value="3" label="value-3" />
+			</answer-group>
+		</question-group>
+		
+		<question-group name="qg2" label="subquestion2">
+			<answer-group name="ag1" type="checkbox" label="answer1a">
+				<answer name="a1" text="false" value="1" label="value-1" />
+			</answer-group>
+
+			<answer-group name="ag2" type="combobox" label="answer1b">
+				<answer name="a1" text="false" value="1" label="value-1" />
+				<answer name="a2" text="false" value="2" label="value-2" />
+				<answer name="a3" text="false" value="3" label="value-3" />
+			</answer-group>
+		</question-group>
+		
+		<validation>
+			<not-empty question-group="*" answer-group="*" />
+			<constraint question="q2" question-group="qg1" answer-group="ag2" answer="a2">
+				<conformer question-group="qg2" answer-group="ag1" answer="a1" rule="not-empty" />
+				<conformer question-group="qg2" answer-group="ag2" answer="+" rule="not-empty" />
+			</constraint>
+		</validation>
+		
+		<filtering>
+			<filter>
+				<constraint question="q1" question-group="qg1" answer-group="ag1" answer="a3" />
+			</filter>
+			<filter>
+				<constraint question="q2" question-group="qg1" answer-group="ag1" answer="a3" not="not" />
+			</filter>
+		</filtering>
+	</question>
+	
+	<question name="q4" template="lines">
+		question4 question4 [b]question4[/b] question4
+		<question-group name="qg1" label="text-answers">
+			<answer-group name="ag1" type="text" label="">
+				<answer name="a1" text="true" value="" label="text-1" />
+				<answer name="a2" text="true" value="" label="text-2" />
+				<answer name="a3" text="true" value="" label="text-3" />
+			</answer-group>
+		</question-group>
+		
+		<validation>
+			<not-empty question-group="qg1" answer-group="ag1" answer="*" />
+		</validation>
+	</question>
+</questionnaire>

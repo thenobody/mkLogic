@@ -1,0 +1,1 @@
+<h2>Signup success</h2><p>Login: <?php echo $user->Login ?></p><p>To login go to <a href="/">Home</a></p><p><a href="/auth/confirm?confirm=<?php echo $user->Token; ?>">/auth/confirm?confirm=<?php echo $user->Token; ?></a></p>

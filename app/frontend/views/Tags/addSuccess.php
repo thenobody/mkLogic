@@ -1,0 +1,1 @@
+<?php$props = $tag->serializeProperties();$props['listId'] = $list->Id;echo json_encode(	array(		'status' => 'ok',		'tag' => $props,	));

@@ -1,0 +1,1 @@
+<?php// instantiate framework, load configuration, dispatch applicationrequire dirname( __FILE__ ) . '/lib/Core.php';$config = require 'app/backend/config/base.php';$app = Core::createApp($config);$app->dispatch();
