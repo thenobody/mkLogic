@@ -1,5 +1,5 @@
 <?php 
-
+// meh
 // store application directory
 $appDir = dirname( dirname( __FILE__ ) );
 // include models, components, controllers directories in global execution
