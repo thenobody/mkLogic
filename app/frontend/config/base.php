@@ -28,7 +28,7 @@ return array(
 		'defaultTemplate' => 'main.php',
 	),
 	'Session'	=> array(
-		'name'		=> 'equetsionaire_presenter_admin',
+		'name'		=> 'equetsionaire_presenter',
 	),
 
 	// databse configuration

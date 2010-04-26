@@ -1,1 +1,0 @@
-<?phpecho json_encode( array(	'status'	=>	'error',	'message'	=>	'error adding new checklist',) );

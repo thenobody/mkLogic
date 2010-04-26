@@ -1,1 +1,0 @@
-<?php echo __FILE__."<br />"; ?><?php echo "token:\t$token<br />"; ?>

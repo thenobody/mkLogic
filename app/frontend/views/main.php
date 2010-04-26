@@ -16,6 +16,8 @@
 	
 </head>
 <body>
-	<?php echo $content ?>
+	<h1>
+		<?php echo $content ?>
+	</h1>
 </body>
 </html>
