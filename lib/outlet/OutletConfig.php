@@ -338,7 +338,7 @@ class OutletEntityConfig {
 	 */
 	function getProperty ($prop) {
 		if (!isset($this->props[$prop])) {
-			throw new OutletConfigException('Entity ['.$this->getClass().'] does not have a property ['.$prop.'] defined in the configuration');
+			throw new OutletConfigException('Entity ['.$this->clazz/*getClass()*/.'] does not have a property ['.$prop.'] defined in the configuration');
 		}
 		
 		return $this->props[$prop];

@@ -68,6 +68,14 @@ class ParameterHolder
 	}
 	
 	/*
+		returns true if ParameterHolder does not contain any value
+	*/
+	public function isEmpty()
+	{
+		return ( count( $this->getAll() ) < 1 );
+	}
+	
+	/*
 		assign new variable by reference
 	*/
 	public function setByReference( $key, & $value )
@@ -81,5 +89,13 @@ class ParameterHolder
 	public function setFromArray( $array )
 	{
 		$this->_parameters = $array;
+	}
+	
+	/*
+		returns array of parameter names in this ParameterHolder
+	*/
+	public function getParameterNames()
+	{
+		return array_keys( $this->getAll() );
 	}
 }

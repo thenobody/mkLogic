@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE questionnaire SYSTEM "questionaire.schema.dtd">
 <questionnaire name="q1-2009-02-16" continuous="true">
-	<question name="q1" template="radio-vertical">
+	<question name="q1" template="radio_vertical">
 		question1 question1 [b]question1[/b] question1
 		<next-questions>
 			<question name="q2" />
@@ -20,7 +20,7 @@
 		</validation>
 	</question>
 	
-	<question name="q2" template="radio-table">
+	<question name="q2" template="radio_table">
 		question2 question2 [b]question2[/b] question2
 		<next-questions>
 			<question name="q3" />

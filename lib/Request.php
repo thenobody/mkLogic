@@ -17,7 +17,8 @@ class Request extends BaseComponent
 		$_controllerName,
 		$_actionName,
 		$_defaults,
-		$_errors;
+		$_errors,
+		$_httpErrors;
 	
 
 	/*
@@ -50,7 +51,7 @@ class Request extends BaseComponent
 	public function init( $config )
 	{
 		$this->_defaults = $config[ 'defaults' ];
-		$this->_errors = $config[ 'errors' ];
+		$this->_httpErrors = $config[ 'errors' ];
 		
 		$this->_merged = new ParameterHolder();
 		$this->_merged->setFromArray(
@@ -203,36 +204,46 @@ class Request extends BaseComponent
 	}
 	
 	/*
-		returns specified file's file name
+		returns HTTP errors config array
 	*/
-	public function getFileName( $file )
+	
+	public function getHttpErrors()
 	{
-		$file = $this->getFile( $file );
-		return ( $file ) ? $file->getFileName() : false;
+		return $this->_httpErrors;
 	}
 	
 	/*
-		moves specified request file to given folder (if FS permissions allow this action)
-	*/
-	public function moveFile( $file, $targetPath )
-	{
-		$file = $this->getFile( $file );
-		
-		if( !$file )
-			throw new EFileNotFound();
-		
-		if( !copy( $file->getTemporaryFileName(), $targetPath ) )
-			throw EUnableToMoveFile();
-		
-		return unlink( $file->getTemporaryFileName() );
-	}
-	
-	/*
-		returns Controller error class descriptions
+		returns request user-specified errors
 	*/
 	public function getErrors()
 	{
+		if( is_null( $this->_errors ) )
+			$this->_errors = new ParameterHolder();
 		return $this->_errors;
+	}
+	
+	/*
+		returns true if Request contains errors
+	*/
+	public function hasErrors()
+	{
+		return !$this->getErrors()->isEmpty();
+	}
+
+	/*
+		retrieves particular error message with specified name
+	*/
+	public function getError( $name, $default = false )
+	{
+		return $this->getErrors()->get( $name, $default );
+	}
+
+	/*
+		adds new error into request with specified name
+	*/
+	public function addError( $name, $value )
+	{
+		$this->getErrors()->set( $name, $value );
 	}
 	
 	/*
@@ -240,7 +251,7 @@ class Request extends BaseComponent
 	*/
 	public function get404ControllerName()
 	{
-		$errors = $this->getErrors();
+		$errors = $this->getHttpErrors();
 		return $errors[ '404' ][ 0 ];
 	}
 	
@@ -249,7 +260,7 @@ class Request extends BaseComponent
 	*/
 	public function get404ActionName()
 	{
-		$errors = $this->getErrors();
+		$errors = $this->getHttpErrors();
 		return $errors[ '404' ][ 1 ];
 	}
 	

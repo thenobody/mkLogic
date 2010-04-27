@@ -6,6 +6,9 @@
 class UserSession extends BaseComponent
 {
 
+	private
+		$_errors;
+
 	public function getToken()
 	{
 		return $this->getSession()->get( "token", false );
@@ -15,5 +18,5 @@ class UserSession extends BaseComponent
 	{
 		$this->getSession()->set( "token", $token );
 	}
-	
+
 }

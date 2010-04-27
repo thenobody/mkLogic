@@ -81,10 +81,28 @@ class Dispatcher extends BaseComponent
 			include Core::getApp()->getAppDir() . '/controllers/' . $controllerName . '.php';
 			
 		$controller = new $controllerName();
-		if( $variables != null )
-			$controller->setVariables( $variables );
+		$variables = $this->addGlobalVariables( $variables );
+		$controller->setVariables( $variables );
 		
 		return $controller;
+	}
+	
+	/*
+		adds specified variables to controller so they are available in the corresponding view
+	*/
+	private function addGlobalVariables( $variables )
+	{
+		$vars = array(
+			'mk_request'	=>	$this->getRequest(),
+		);
+		
+		if( is_null( $variables ) )
+			$variables = new ParameterHolder();
+		
+		foreach( $vars as $name => $value )
+			$variables->set( $name, $value );
+		
+		return $variables;
 	}
 	
 	/*
