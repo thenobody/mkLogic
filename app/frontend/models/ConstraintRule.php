@@ -1,6 +1,6 @@
 <?php
 
-class ConstraintRule
+class ConstraintRule extends Model
 {
 
 }

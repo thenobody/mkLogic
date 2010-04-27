@@ -1,6 +1,6 @@
 <?php
 
-class TokenStatus
+class TokenStatus extends Model
 {
 
 }

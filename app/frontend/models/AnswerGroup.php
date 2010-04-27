@@ -1,6 +1,6 @@
 <?php
 
-class AnswerGroup
+class AnswerGroup extends Model
 {
 
 }

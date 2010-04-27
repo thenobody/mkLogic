@@ -1,6 +1,6 @@
 <?php
 
-class FilteringOrder
+class FilteringOrder extends Model
 {
 
 }

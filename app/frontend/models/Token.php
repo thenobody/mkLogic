@@ -1,6 +1,6 @@
 <?php
 
-class Token
+class Token extends Model
 {
 	private
 		$_questionnaire,

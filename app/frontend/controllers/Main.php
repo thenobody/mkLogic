@@ -21,7 +21,7 @@ class Main extends AppController
 				return;
 			
 			$this->getUser()->setToken( $token );
-			$this->redirect( 'Main', 'index' );
+			$this->forward( 'Main', 'index' );
 		}
 	}
 	
@@ -58,6 +58,6 @@ class Main extends AppController
 			return false;
 		}
 		
-		return true;
+		return $token;
 	}
 }

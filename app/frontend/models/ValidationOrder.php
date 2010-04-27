@@ -1,6 +1,6 @@
 <?php
 
-class ValidationOrder
+class ValidationOrder extends Model
 {
 
 }

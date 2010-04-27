@@ -1,6 +1,6 @@
 <?php
 
-class QuestionGroup
+class QuestionGroup extends Model
 {
 
 }

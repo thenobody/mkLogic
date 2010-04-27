@@ -1,6 +1,6 @@
 <?php
 
-class UserAnswer
+class UserAnswer extends Model
 {
 
 }

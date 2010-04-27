@@ -1,6 +1,6 @@
 <?php
 
-class Constraint
+class Constraint extends Model
 {
 
 }
