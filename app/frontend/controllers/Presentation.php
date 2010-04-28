@@ -15,7 +15,6 @@ class Presentation extends AppController
 			
 			return Controller::ERROR;
 		}
-		$this->meh = "meh";
 		$this->forward( 'Presentation', $questionnaire->getCurrentQuestion()->Template );
 	}
 	

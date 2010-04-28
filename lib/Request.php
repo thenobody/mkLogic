@@ -140,6 +140,47 @@ class Request extends BaseComponent
 	}
 	
 	/*
+		returns uploaded files properties
+	*/
+	public function getFiles()
+	{
+		return $this->_files;
+	}
+
+	/*
+		return file specified by id
+	*/
+	public function getFile( $file, $default = false )
+	{
+		return $this->getFiles()->get( $file, $default );
+	}
+
+	/*
+		returns specified file's file name
+	*/
+	public function getFileName( $file )
+	{
+		$file = $this->getFile( $file );
+		return ( $file ) ? $file->getFileName() : false;
+	}
+
+	/*
+		moves specified request file to given folder (if FS permissions allow this action)
+	*/
+	public function moveFile( $file, $targetPath )
+	{
+		$file = $this->getFile( $file );
+
+		if( !$file )
+			throw new EFileNotFound();
+
+		if( !copy( $file->getTemporaryFileName(), $targetPath ) )
+			throw EUnableToMoveFile();
+
+		return unlink( $file->getTemporaryFileName() );
+	}
+	
+	/*
 		returns Script name
 	*/
 	public function getScriptName()
@@ -185,22 +226,6 @@ class Request extends BaseComponent
 	public function getParameters()
 	{
 		return $this->_merged;
-	}
-	
-	/*
-		returns uploaded files properties
-	*/
-	public function getFiles()
-	{
-		return $this->_files;
-	}
-	
-	/*
-		return file specified by id
-	*/
-	public function getFile( $file, $default = false )
-	{
-		return $this->getFiles()->get( $file, $default );
 	}
 	
 	/*

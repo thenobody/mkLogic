@@ -28,7 +28,8 @@ return array(
 		'defaultTemplate' => 'main.php',
 	),
 	'Session'	=> array(
-		'name'		=> 'equetsionaire_presenter',
+		'name'				=>	'equetsionaire_presenter',
+		'validityPeriod'	=>	1800,	// seconds
 	),
 
 	// databse configuration

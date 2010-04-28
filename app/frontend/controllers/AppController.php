@@ -13,22 +13,17 @@ class AppController extends Controller
 
 	public function getUser()
 	{
-		return Core::getApp()->getUser();
+		return $this->getApp()->getComponent( 'UserSession' );
 	}
-	
-	public function getUserModel()
-	{
-		return $this->getOutlet()->load( 'User', $this->getUser()->getId() );
-	}
-	
+
 	public function getOutlet()
 	{
-		return Core::getApp()->getComponent( 'DataBase' )->getOutlet();
+		return $this->getApp()->getComponent( 'DataBase' )->getOutlet();
 	}
 	
 	public function getRequest()
 	{
-		return Core::getApp()->getComponent( 'Request' );
+		return $this->getApp()->getComponent( 'Request' );
 	}
 
 }

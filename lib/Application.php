@@ -74,12 +74,5 @@ class Application
 		$name = ucfirst( $name );
 		return file_exists( $this->getAppDir() . '/controllers/' . $name . '.php' );
 	}
-
-	/*
-		returns UserSession component
-	*/	
-	public function getUser()
-	{
-		return $this->getComponent( 'UserSession' );
-	}
+	
 }
