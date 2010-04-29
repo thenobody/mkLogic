@@ -25,4 +25,12 @@ class Collection extends ArrayObject {
 	public function removeAll () {
 		$this->exchangeArray(array());
 	}
+	
+	/**
+	 * Returns true if Collection does not contain any elements
+	 */
+	public function isEmpty()
+	{
+		return count( $this ) < 1;
+	}
 }

@@ -1,1 +1,1 @@
-<?php echo "radio_table"; ?>
+<?php echo "radio_table<br />"; ?><?php echo $question->QuestionText; ?>

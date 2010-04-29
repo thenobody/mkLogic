@@ -4,7 +4,8 @@ class Token extends Model
 {
 	private
 		$_questionnaire,
-		$_status;
+		$_status,
+		$_userAnswers;
 	
 	public function getQuestionnaire()
 	{
@@ -24,5 +25,15 @@ class Token extends Model
 	public function setTokenStatus( $status )
 	{
 		$this->_status = $status;
+	}
+	
+	public function getUserAnswers()
+	{
+		return $this->_userAnswers;
+	}
+	
+	public function setUserAnswers( Collection $userAnswers )
+	{
+		$this->_userAnswers = $userAnswers;
 	}
 }

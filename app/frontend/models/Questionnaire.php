@@ -4,7 +4,8 @@ class Questionnaire extends Model
 {
 	private
 		$_status,
-		$_questions;
+		$_questions,
+		$_questionnaireOrders;
 	
 	public function getQuestionnaireStatus()
 	{
@@ -26,14 +27,24 @@ class Questionnaire extends Model
 		$this->_questions = $questions;
 	}
 	
-	public function isAvailable()
+	private function getOrderBuilder()
 	{
-		return ( $this->getQuestionnaireStatus()->Value == 'active' );
+		return $this->_orderBuilder;
 	}
 	
-	public function getCurrentQuestion()
+	private function setOrderBuilder( QuestionnaireOrderBuilder $builder )
 	{
-		$questions = $this->getQuestions()->toArray();
-		return $questions[0];
+		$this->_orderBuilder = $builder;
 	}
+	
+	public function getQuestionnaireOrders()
+	{
+		return $this->_questionnaireOrders;
+	}
+	
+	public function setQuestionnaireOrders( Collection $questionnaireOrders )
+	{
+		$this->_questionnaireOrders = $questionnaireOrders;
+	}
+	
 }

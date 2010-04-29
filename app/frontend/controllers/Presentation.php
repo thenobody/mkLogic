@@ -2,20 +2,30 @@
 
 class Presentation extends AppController
 {
+	private
+		$_tokenModel;
+	
 	public function _index()
 	{
 		if( !$this->getUser()->getToken() )
 			$this->forward( 'Main', 'login' );
 		
-		$questionnaire = $this->initQuestionnaire();
-		if( !$questionnaire->isAvailable() )
+		$tokenModel = $this->getTokenModel();
+		
+		$questionnaireDispatcher = new QuestionnaireDispatcher( $tokenModel );
+		$questionnaireDispatcher->prepare();
+		
+		if( $questionnaireDispatcher->hasErrors() )
 		{
-			$this->getRequest()->addError( 'questionnaire-unavailable',
-											$questionnaire->getQuestionnaireStatus()->generateMessage() );
+			$errors = $questionnaireDispatcher->getErrors();
+			foreach( $errors->getParameterNames() as $key )
+				$this->getRequest()->addError( $key, $errors->get( $key ) );
 			
 			return Controller::ERROR;
 		}
-		$this->forward( 'Presentation', $questionnaire->getCurrentQuestion()->Template );
+		
+		$this->question = $questionnaireDispatcher->getNextQuestion();
+		$this->forward( 'Presentation', $this->question->Template );
 	}
 	
 	public function _radio_table()
@@ -38,16 +48,17 @@ class Presentation extends AppController
 
 	}
 	
-	private function initQuestionnaire()
+	private function getTokenModel()
 	{
-		$token = $this->getUser()->getToken();
-		$tokenModel = $this->getOutlet()->
-			from( 'Token' )->
-			where( '{Token.Token} = ?', array( $token ) )->
-			findOne();
-		
-		$questionnaire = $tokenModel->getQuestionnaire();
-		return $questionnaire;
+		if( is_null( $this->_tokenModel ) )
+		{
+			$token = $this->getUser()->getToken();
+			$this->_tokenModel = $this->getOutlet()->
+				from( 'Token' )->
+				where( '{Token.Token} = ?', array( $token ) )->
+				findOne();
+		}
+		return $this->_tokenModel;
 	}
-	
+
 }

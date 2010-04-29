@@ -29,7 +29,7 @@ return array(
 	),
 	'Session'	=> array(
 		'name'				=>	'equetsionaire_presenter',
-		'validityPeriod'	=>	1800,	// seconds
+		'validityPeriod'	=>	18000,	// seconds
 	),
 
 	// databse configuration
@@ -65,6 +65,7 @@ return array(
 					array( 'one-to-many', 'Answer', array( 'key' => 'TokenId' ) ),
 					array( 'one-to-one', 'Questionnaire', array( 'key' => 'QuestionnaireId' ) ),
 					array( 'one-to-one', 'TokenStatus', array( 'key' => 'StatusId' ) ),
+					array( 'one-to-many', 'UserAnswer', array( 'key' => 'TokenId' ) ),
 				),
 			),
 			'TokenStatus' => array(
@@ -93,6 +94,7 @@ return array(
 				'associations' => array(
 					array( 'one-to-one', 'QuestionnaireStatus', array( 'key' => 'StatusId' ) ),
 					array( 'one-to-many', 'Question', array( 'key' => 'QuestionnaireId' ) ),
+					array( 'one-to-many', 'QuestionnaireOrder', array( 'key' => 'QuestionnaireId' ) ),
 				),
 			),
 			'Question'	=> array(
@@ -242,12 +244,10 @@ return array(
 				'table' => 'questionnaire_order',
 				'props' => array(
 					'Id'				=>	array( 'id', 'int', array( 'pk'=>true, 'autoIncrement'=>true ) ),
-					'QuestionnaireId'	=>	array( 'questionnaire_id', 'int' ),
 					'QuestionId'		=>	array( 'question_id', 'int' ),
 					'NextQuestionId'	=>	array( 'next_question_id', 'int' ),
 				),
 				'associations' => array(
-					array( 'many-to-one', 'Questionnaire', array( 'key' => 'QuestionnaireId' ) ),
 					array( 'many-to-one', 'Question', array( 'key' => 'QuestionId' ) ),
 					array( 'many-to-one', 'Question', array( 'key' => 'NextQuestionId', 'name' => 'NextQuestion' ) ),
 				),

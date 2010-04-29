@@ -1,1 +1,1 @@
-<?php echo "radio_vertical"; ?>
+<?php echo "radio_vertical<br />"; ?><?php echo $question->QuestionText; ?>
