@@ -14,4 +14,5 @@ class Answer extends Model
 	{
 		$this->_answerGroup = $answerGroup;
 	}
+
 }
