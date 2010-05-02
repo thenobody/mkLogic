@@ -1,1 +1,1 @@
-<?php echo "table"; ?>
+<?php echo "table<br />"; ?><?php echo $question->QuestionText; ?>

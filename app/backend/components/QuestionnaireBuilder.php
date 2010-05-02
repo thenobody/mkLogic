@@ -57,10 +57,10 @@ class QuestionnaireBuilder extends BaseComponent
 		$this->createOrUpdateQuestionnaire();
 		
 		$this->createQuestionOrder( $this->getQuestionnaire() );
-		$this->createOrUpdateQuestionnaire();
+	//	$this->createOrUpdateQuestionnaire();
 		
 		$this->parseQuestionnaireValidationAndFiltering( $this->getQuestionnaire() );
-		$this->getDB()->save( $this->_questionnaire );
+		$this->createOrUpdateQuestionnaire();
 	}
 	
 	private function parseQuestionnaire( $filename )

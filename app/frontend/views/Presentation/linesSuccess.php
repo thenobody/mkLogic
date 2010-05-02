@@ -1,1 +1,1 @@
-<?php echo "lines"; ?>
+<?php echo "lines<br />"; ?><?php echo $question->QuestionText; ?>

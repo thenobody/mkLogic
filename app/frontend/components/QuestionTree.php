@@ -15,16 +15,16 @@ class QuestionTree extends BaseComponent
 		$this->_root = $root;
 	}
 	
-	private function updateRoot( QuestionTreeNode $merger )
+	private function updateTree( QuestionTreeNode $merger )
 	{
 		$root = $this->getRoot();
 		if( is_null( $root ) )
 			$this->setRoot( $merger );
 		else
 		{
-			if( $merger->getChildByQuestion( $root->getQuestion(), false ) )
+			if( !$merger->getChildrenByQuestion( $root->getQuestion() )->isEmpty() )
 				$this->setRoot( $merger );
-			else if( !$root->getChildByQuestion( $merger->getQuestion(), false ) )
+			else if( $root->getChildrenByQuestion( $merger->getQuestion() )->isEmpty() )
 				throw new EDisjointingNodes();
 		}
 	}
@@ -37,37 +37,43 @@ class QuestionTree extends BaseComponent
 		else
 		{
 			$node = new QuestionTreeNode( $question );
-			$this->updateRoot( $node );
+			$this->updateTree( $node );
 		}
 	}
 	
-	public function getNodeByQuestion( Question $question, $default = false )
+	public function getNodesByQuestion( Question $question, $default = false )
 	{
 		$root = $this->getRoot();
-		return $root->getChildByQuestion( $question, $default );
+		return $root->getChildrenByQuestion( $question );
 	}
 	
 	public function addAnswer( UserAnswer $userAnswer )
 	{
 		$question = $userAnswer->getAnswer()->getAnswerGroup()->getQuestionGroup()->getQuestion();
-		$node = $this->getNodeByQuestion( $question, false );
-		if( !$node )
+		$nodes = $this->getNodesByQuestion( $question );
+		if( $nodes->isEmpty() )
 			throw new EInvalidAnswer();
-		$node->setUserAnswer( $userAnswer );
+		
+		foreach( $nodes as $node )
+			$node->setUserAnswer( $userAnswer );
 	}
 	
 	public function getPossibleNextQuestions()
 	{
 		$root = $this->getRoot();
+		$result = new Collection();
 		if( !$root->hasUserAnswer() )
 		{
-			$result = new Collection();
-			$result->add( $root );
+			$result->add( $root->getQuestion() );
 			return $result;
 		}
 
 		$node = $root->getLastAnsweredChild();
-		return $node->getChildren();
+		
+		foreach( $node->getChildren() as $child )
+			$result->add( $child->getQuestion() );
+		
+		return $result;
 	}
 
 }

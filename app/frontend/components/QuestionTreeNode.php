@@ -10,6 +10,11 @@ class QuestionTreeNode
 	public function __construct( Question $question )
 	{
 		$this->setQuestion( $question );
+		$this->populateChildren();
+	}
+	
+	private function populateChildren()
+	{
 		foreach( $this->getQuestion()->getQuestions()->toArray() as $nextQuestion )
 			$this->addChild( new QuestionTreeNode( $nextQuestion ) );
 	}
@@ -61,14 +66,28 @@ class QuestionTreeNode
 		$this->getChildren()->add( $node );
 	}
 	
-	public function getChildByQuestion( Question $question, $default = false )
+	public function getChildrenByQuestion( Question $question, Collection $children = null )
 	{
+		if( is_null( $children ) )
+			$children = new Collection();
+		
 		if( $this->getQuestion() == $question )
-			return $this;
+			$children->add( $this );
 		
 		foreach( $this->getChildren() as $child )
+			$child->getChildrenByQuestion( $question, $children );
+		
+		return $children;
+	}
+	
+	public function getChildByQuestionName( $question, $default = false )
+	{
+		if( $this->getQuestion()->Name == $question )
+			return $this;
+
+		foreach( $this->getChildren() as $child )
 		{
-			if( $node = $child->getChildByQuestion( $question ) )
+			if( $node = $child->getChildByQuestionName( $question ) )
 				return $node;
 		}
 		return $default;

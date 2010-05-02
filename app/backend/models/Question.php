@@ -77,7 +77,5 @@ class Question extends QuestionnaireModel
 	{
 		$this->_filteringOrder = $filteringOrder;
 	}
-	
-	
 
 }

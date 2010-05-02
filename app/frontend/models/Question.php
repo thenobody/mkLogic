@@ -4,7 +4,9 @@ class Question extends Model
 {
 	private
 		$_questionnaire,
-		$_nextQuestions;
+		$_nextQuestions,
+		$_validationOrders,
+		$_filteringOrders;
 	
 	public function getQuestionnaire()
 	{
@@ -24,5 +26,25 @@ class Question extends Model
 	public function setQuestions( Collection $nextQuestions )
 	{
 		$this->_nextQuestions = $nextQuestions;
+	}
+	
+	public function getValidationOrders()
+	{
+		return $this->_validationOrders;
+	}
+	
+	public function setValidationOrders( Collection $validationOrders )
+	{
+		$this->_validationOrders = $validationOrders;
+	}
+	
+	public function getFilteringOrders()
+	{
+		return $this->_filteringOrders;
+	}
+	
+	public function setFilteringOrders( Collection $filteringOrders )
+	{
+		$this->_filteringOrders = $filteringOrders;
 	}
 }

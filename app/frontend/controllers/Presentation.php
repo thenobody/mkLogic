@@ -57,6 +57,8 @@ class Presentation extends AppController
 				from( 'Token' )->
 				where( '{Token.Token} = ?', array( $token ) )->
 				findOne();
+			if( !$this->_tokenModel )
+				$this->forward( 'Main', 'login' );
 		}
 		return $this->_tokenModel;
 	}

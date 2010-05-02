@@ -63,7 +63,9 @@ class QuestionnaireDispatcher extends BaseComponent
 	
 	private function validateAndSaveAnswers()
 	{
-	
+		// validate questionnaire availability
+		// validate answer
+		// save this shit
 	}
 	
 	private function findNextQuestion()
@@ -82,9 +84,19 @@ class QuestionnaireDispatcher extends BaseComponent
 		
 		$nextQuestions = $questionTree->getPossibleNextQuestions();
 		
-		// filtering process on possible questions
-		// TODO
+		$nextQuestion = $this->getFilteredNextQuestion( $nextQuestions );
 		
-		return $nextQuestions[0]->getQuestion();
+		return $nextQuestion;
+	}
+	
+	private function getFilteredNextQuestion( Collection $nextQuestions )
+	{
+		foreach( $nextQuestions as $question )
+		{
+			$builder = new FilteringProcessor( $this->getToken() );
+			if( $builder->evaluateQuestion( $question ) )
+				return $question;
+		}
+		return false;
 	}
 }
