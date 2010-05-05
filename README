@@ -1,2 +1,19 @@
-readme
-editted
+README
+
+mkLogic - an eQuestionnaire Application
+-----------------------------------------
+Bachelor Thesis - Anton Vanèo
+
+Purpose of this project is to create an all-round, business deployable eQuestionnaire and survey system
+
+THIS IS A WORK-IN-PROGRESS! - a number of features isn't implemented yet
+
+Major features:
+- built using exclusively open-source software/free software
+- presentation is entirely based on web technologies - available to basically every user of the Internet
+- editting platform incorporates WYSIWYG interface for creating, editting and deploying questionnaires
+- advanced statistics and output:
+	- dynamic creation of tables, graphs, summaries, etc. for questionnaires
+	- export to spreadsheet formats (MS Excel, OO.org Calc)
+- constraint based validation and filtering schemes
+- support for piping, quota matching and randomizing of answers
