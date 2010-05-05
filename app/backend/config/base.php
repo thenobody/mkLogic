@@ -101,6 +101,7 @@ return array(
 					'Name'				=>	array( 'name', 'varchar' ),
 					'QuestionText'		=>	array( 'question_text', 'text' ),
 					'Template'			=>	array( 'template', 'varchar' ),
+					'First'				=>	array( 'first', 'bool' ),
 					'QuestionnaireId'	=>	array( 'questionnaire_id', 'int' ),
 				),
 				'associations' => array(

@@ -96,6 +96,7 @@ class QuestionnaireBuilder extends BaseComponent
 			$questionModel->Name = (string) $attributes[ 'name' ];
 			$questionModel->QuestionText = trim( (string) $question );
 			$questionModel->Template = (string) $attributes[ 'template' ];
+			$questionModel->First = ( (string) $attributes[ 'first' ] == 'true' );
 			$questionModel->setXml( $question );
 			
 			$questionnaire->getQuestions()->add( $questionModel );

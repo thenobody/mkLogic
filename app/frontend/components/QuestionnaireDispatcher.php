@@ -55,10 +55,21 @@ class QuestionnaireDispatcher extends BaseComponent
 	
 	public function prepare()
 	{
-		$questionnaire = $this->getToken()->getQuestionnaire();
 		$this->validateAndSaveAnswers(); // mega todo
 		$nextQuestion = $this->findNextQuestion();
 		$this->setNextQuestion( $nextQuestion );
+		
+		$graph = $this->generateQuestionGraph();
+	}
+	
+	private function generateQuestionGraph()
+	{
+		$token = $this->getToken();
+		$questionnaire = $token->getQuestionnaire();
+		
+		$questionGraph = new QuestionGraph( $questionnaire );
+		
+		return $questionGraph;
 	}
 	
 	private function validateAndSaveAnswers()

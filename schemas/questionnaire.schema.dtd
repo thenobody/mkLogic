@@ -16,6 +16,7 @@
 <!ATTLIST question name CDATA #REQUIRED>
 <!ATTLIST question next-question CDATA #IMPLIED>
 <!ATTLIST question template CDATA #REQUIRED>
+<!ATTLIST question first CDATA #IMPLIED>
 
 <!ATTLIST question-group name CDATA #REQUIRED>
 <!ATTLIST question-group label CDATA #IMPLIED>
