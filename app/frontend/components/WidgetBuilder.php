@@ -10,6 +10,7 @@
 	
 	note: generated widgets have names which are base64'd strings of
 	{questionnaire-id}_{question-id}_{question-group-id}_{answer-group-id}--{answer-id}
+	-- this is subject to possible change
 	* answer-id is omitted if answer-group type is not of aggregate type (i.e. check-box)
 */
 
