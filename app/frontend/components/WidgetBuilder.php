@@ -40,10 +40,10 @@ class WidgetBuilder
 		return $result;
 	}
 	
-	static public function getFormTag( $name, $action = '', $method = 'post' )
+	static public function getFormTag( Question $question, $action = '', $method = 'post' )
 	{
 		$format = '<form name="%s" action="%s" method="%s">';
-		return sprintf( $format, $name, $action, $method );
+		return sprintf( $format, $question->Name, $action, $method );
 	}
 	
 	static public function getSubmitButton( $label )
