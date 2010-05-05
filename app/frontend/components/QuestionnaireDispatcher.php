@@ -58,8 +58,6 @@ class QuestionnaireDispatcher extends BaseComponent
 		$this->validateAndSaveAnswers(); // mega todo
 		$nextQuestion = $this->findNextQuestion();
 		$this->setNextQuestion( $nextQuestion );
-		
-		$graph = $this->generateQuestionGraph();
 	}
 	
 	private function generateQuestionGraph()
@@ -82,32 +80,27 @@ class QuestionnaireDispatcher extends BaseComponent
 	private function findNextQuestion()
 	{
 		$token = $this->getToken();
-		$questionnaire = $token->getQuestionnaire();
-		$questions = $questionnaire->getQuestions();
-		$questionTree = new QuestionTree();
-		
-		foreach( $questions as $question )
-			$questionTree->addQuestion( $question );
-		
-		$answers = $token->getUserAnswers();
-		foreach( $answers as $answer )
-			$questionTree->addAnswer( $answer );
-		
-		$nextQuestions = $questionTree->getPossibleNextQuestions();
-		
-		$nextQuestion = $this->getFilteredNextQuestion( $nextQuestions );
+		$graph = $this->generateQuestionGraph();
+		$nextQuestion = $this->getFilteredNextQuestion( $graph );
 		
 		return $nextQuestion;
 	}
 	
-	private function getFilteredNextQuestion( Collection $nextQuestions )
+	private function getFilteredNextQuestion( QuestionGraph $graph )
 	{
-		foreach( $nextQuestions as $question )
-		{
-			$builder = new FilteringProcessor( $this->getToken() );
-			if( $builder->evaluateQuestion( $question ) )
-				return $question;
-		}
+		$token = $this->getToken();
+		$currentNode = $graph->getCurrentNodeFor( $token );
+		$filtering = new FilteringProcessor( $token, $graph );
+
+		// if node contains first Question of Questionnaire, return node
+		if( !$currentNode->getQuestion()->hasUserAnswers( $token ) )
+			return $currentNode->getQuestion();
+		
+		// else evaluate constraints of next neighbours
+		foreach( $currentNode->getNeighbours() as $node )
+			if( $filtering->evaluateNode( $node ) )
+				return $node->getQuestion();
+
 		return false;
 	}
 }

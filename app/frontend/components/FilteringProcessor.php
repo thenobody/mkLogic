@@ -11,11 +11,13 @@
 class FilteringProcessor
 {
 	private
-		$_token;
+		$_token,
+		$_questionGraph;
 		
-	public function __construct( Token $token )
+	public function __construct( Token $token, QuestionGraph $graph )
 	{
 		$this->setToken( $token );
+		$this->setQuestionGraph( $graph );
 	}
 	
 	public function getToken()
@@ -28,22 +30,32 @@ class FilteringProcessor
 		$this->_token = $token;
 	}
 	
-	/*
-		returns true if all constraints were matched, otherwise false
-		method receives Question model as argument,
-		ConstraintTree is built with filtering constraints of this Question;
-		Subsequently, this ConstraintTree is evaluated according
-		the previous answers given by the respondent
-	*/
-	public function evaluateQuestion( Question $question )
+	public function getQuestionGraph()
 	{
-		$token = $this->getToken();
-		$tree = $this->buildTree( $question );
-		return $tree->evaluate( $token );
+		return $this->_questionGraph;
 	}
 	
-	private function buildTree( Question $question )
+	public function setQuestionGraph( QuestionGraph $questionGraph )
 	{
+		$this->_questionGraph = $questionGraph;
+	}
+	
+	/*
+		- returns true if all constraints were matched, otherwise false
+		- method receives QuestionGraphNode model as argument,
+	*/
+	public function evaluateNode( QuestionGraphNode $node )
+	{
+		$token = $this->getToken();
+		$graph = $this->getQuestionGraph();
+		$tree = $this->buildTree( $node );
+		
+		return $tree->evaluate( $token, $graph );
+	}
+	
+	private function buildTree( QuestionGraphNode $node )
+	{
+		$question = $node->getQuestion();
 		$tree = new ConstraintTree( $question );
 		foreach( $question->getFilteringOrders() as $order )
 		{

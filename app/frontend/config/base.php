@@ -161,6 +161,7 @@ return array(
 				'associations' => array(
 					array( 'many-to-one', 'AnswerGroup', array( 'key' => 'AnswerGroupId' ) ),
 					array( 'one-to-many', 'Constraint', array( 'key' => 'AnswerId' ) ),
+					array( 'one-to-many', 'UserAnswer', array( 'key' => 'AnswerId' ) ),
 				),
 			),
 			'AnswerType' => array(

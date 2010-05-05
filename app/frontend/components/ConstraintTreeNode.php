@@ -169,52 +169,46 @@ class ConstraintTreeNode extends BaseComponent
 		$child->setRightChild( $node->getRightChild() );
 	}
 	
-	public function evaluate( Token $token )
+	public function evaluate( Token $token, QuestionGraph $graph )
 	{
 		if( $this->hasChildren() )
-			return $this->evaluateByLogicalOperator( $token );
+			return $this->evaluateByLogicalOperator( $token, $graph );
 		else
-			return $this->evaluateByConstraint( $token );
+			return $this->evaluateByConstraint( $token, $graph );
 	}
 	
-	private function evaluateByLogicalOperator( Token $token )
+	private function evaluateByLogicalOperator( Token $token, QuestionGraph $graph )
 	{
 		$result = false;
 		$logOp = $this->getValue();
 		switch( $logOp->Name )
 		{
 			case 'AND':
-				$left = $this->getLeftChild()->evaluate( $token );
-				$right = $this->getRightChild()->evaluate( $token );
+				$left = $this->getLeftChild()->evaluate( $token, $graph );
+				$right = $this->getRightChild()->evaluate( $token, $graph );
 				$result = $left && $right;
 				break;
 			
 			case 'OR':
-				$left = $this->getLeftChild()->evaluate( $token );
-				$right = $this->getRightChild()->evaluate( $token );
+				$left = $this->getLeftChild()->evaluate( $token, $graph );
+				$right = $this->getRightChild()->evaluate( $token, $graph );
 				$result = $left || $right;
 				break;
 			
 			case 'IF':
-				$left = $this->getLeftChild()->evaluate( $token );
-				$right = $this->getRightChild()->evaluate( $token );
+				$left = $this->getLeftChild()->evaluate( $token, $graph );
+				$right = $this->getRightChild()->evaluate( $token, $graph );
 				$result = ( $left && ( !$right ) ) ? false : true;
 				break;
 		}
 		return $result;
 	}
 	
-	private function evaluateByConstraint( Token $token )
+	private function evaluateByConstraint( Token $token, QuestionGraph $graph )
 	{
 		$result = false;
 		$constraint = $this->getValue();
-		$userAnswer = $this->getDB()->from( 'UserAnswer' )->
-						where( '{UserAnswer.AnswerId} = ? AND {UserAnswer.TokenId} = ?',
-							array(
-								$constraint->getAnswer()->Id,
-								$token->Id,
-							)
-						)->findOne();
+		$userAnswer = $token->getAnswerFor( $constraint->getAnswer() );
 		
 		switch( $constraint->getConstraintRule()->Name )
 		{

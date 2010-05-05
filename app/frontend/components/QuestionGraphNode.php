@@ -36,6 +36,11 @@ class QuestionGraphNode
 		return $this->_neighbours;
 	}
 	
+	public function hasNeighbours()
+	{
+		return !$this->getNeighbours()->isEmpty();
+	}
+	
 	public function setNeighbours( Collection $neighbours )
 	{
 		$this->_neighbours = $neighbours;
@@ -56,6 +61,23 @@ class QuestionGraphNode
 				return true;
 		}
 		return false;
+	}
+	
+	public function getLastAnsweredChild( Token $token )
+	{
+		if( !$this->hasNeighbours() )
+			return false;
+		
+		foreach( $this->getNeighbours() as $node )
+		{
+			$question = $node->getQuestion();
+			
+			$test = $question->hasUserAnswers( $token );
+			if( $question->hasUserAnswers( $token ) )
+				return $node->getLastAnsweredChild( $token );
+		}
+		
+		return $this;
 	}
 
 }

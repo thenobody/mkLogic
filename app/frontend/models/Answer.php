@@ -3,7 +3,8 @@
 class Answer extends Model
 {
 	private
-		$_answerGroup;
+		$_answerGroup,
+		$_userAnswers;
 	
 	public function getAnswerGroup()
 	{
@@ -14,5 +15,23 @@ class Answer extends Model
 	{
 		$this->_answerGroup = $answerGroup;
 	}
-
+	
+	public function getUserAnswers()
+	{
+		return $this->_userAnswers;
+	}
+	
+	public function setUserAnswers( Collection $userAnswers )
+	{
+		$this->_userAnswers = $userAnswers;
+	}
+	
+	public function getUserAnswer( $token, $default = false )
+	{
+		$userAnswers = $this->getUserAnswers();
+		foreach( $userAnswers as $userAnswer )
+			if( $userAnswer->getToken() == $token )
+				return $userAnswer;
+		return $default;
+	}
 }

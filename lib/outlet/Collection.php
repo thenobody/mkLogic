@@ -33,4 +33,14 @@ class Collection extends ArrayObject {
 	{
 		return count( $this ) < 1;
 	}
+	
+	/**
+	 * Appends all the elements of the Collection from the argument
+	 * to this Collection maintaining order in both Collections
+	 */
+	public function merge( Collection $merger )
+	{
+		foreach( $merger as $element )
+			$this->add( $element );
+	}
 }

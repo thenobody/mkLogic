@@ -77,12 +77,12 @@ class ConstraintTree extends BaseComponent
 			$this->getRootNode()->merge( $node );
 	}
 	
-	public function evaluate( Token $token )
+	public function evaluate( Token $token, QuestionGraph $graph )
 	{
 		$root = $this->getRootNode();
 		if( is_null( $root ) )
 			return true;
-		return $root->evaluate( $token );
+		return $root->evaluate( $token, $graph );
 	}
 }
 

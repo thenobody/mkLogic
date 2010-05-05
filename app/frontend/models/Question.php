@@ -7,7 +7,8 @@ class Question extends Model
 		$_questionGroups,
 		$_nextQuestions,
 		$_validationOrders,
-		$_filteringOrders;
+		$_filteringOrders,
+		$_answers;
 	
 	public function getQuestionnaire()
 	{
@@ -57,5 +58,35 @@ class Question extends Model
 	public function setFilteringOrders( Collection $filteringOrders )
 	{
 		$this->_filteringOrders = $filteringOrders;
+	}
+	
+	public function getAnswers()
+	{
+		if( is_null( $this->_answers ) )
+			$this->_answers = $this->collectAnswers();
+		return $this->_answers;
+	}
+	
+	public function setAnswers( Collection $answers )
+	{
+		$this->_answers = $answers;
+	}
+	
+	private function collectAnswers()
+	{
+		$result = new Collection();
+		foreach( $this->getQuestionGroups() as $questionGroup )
+			foreach( $questionGroup->getAnswerGroups() as $answerGroup )
+				foreach( $answerGroup->getAnswers() as $answer )
+					$result->add( $answer );
+		return $result;
+	}
+	
+	public function hasUserAnswers( Token $token )
+	{
+		foreach( $this->getAnswers() as $answer )
+			if( $token->getAnswerFor( $answer, false ) != false )
+				return true;
+		return false;
 	}
 }

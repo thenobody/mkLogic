@@ -2,7 +2,7 @@
 
 /*
 	QuestionGraph class
-	- creates graph represantiation of current Questionaire ( with QuestionGraphNode nodes )
+	- creates graph representiation of current Questionnaire ( with QuestionGraphNode nodes )
 	- used for:
 		- seeking the current (first unanswered by Token) Question
 		- inserting and validating new answers of Token, if Request answers are present
@@ -41,6 +41,15 @@ class QuestionGraph
 	public function setRootNode( QuestionGraphNode $root )
 	{
 		$this->_rootNode = $root;
+	}
+	
+	public function getCurrentNodeFor( Token $token )
+	{
+		$root = $this->getRootNode();
+		if( !$root->getQuestion()->hasUserAnswers( $token ) )
+			return $root;
+		else
+			return $root->getLastAnsweredChild( $token );
 	}
 	
 	private function populateNodes()
