@@ -34,4 +34,31 @@ class Answer extends Model
 				return $userAnswer;
 		return $default;
 	}
+	
+	public function addUserAnswer( UserAnswer $userAnswer )
+	{
+		$userAnswers = $this->getUserAnswers();
+		if( is_null( $userAnswers ) )
+		{
+			$userAnswers = new Collection();
+			$this->setUserAnswers( $userAnswers );
+		}
+		$userAnswers->add( $userAnswer );
+	}
+	
+	public function addUserAnswerByToken( Token $token, $txtValue = null )
+	{
+		$userAnswer = $this->getUserAnswer( $token, false );
+		if( $userAnswer )
+		{
+			$userAnswer->TextValue = $txtValue;
+			return;
+		}
+		
+		$userAnswer = new UserAnswer();
+		$userAnswer->setToken( $token );
+		$userAnswer->setAnswer( $this );
+		$userAnswer->TextValue = $txtValue;
+		$this->addUserAnswer( $userAnswer );
+	}
 }

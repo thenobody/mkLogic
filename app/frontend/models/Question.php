@@ -30,12 +30,33 @@ class Question extends Model
 		$this->_questionGroups = $questionGroups;
 	}
 	
-	public function getQuestions()
+	public function getQuestionGroupByName( $name, $default = false )
 	{
+		foreach( $this->getQuestionGroups() as $questionGroup )
+			if( $questionGroup->Name == $name )
+				return $questionGroup;
+		return $default;
+	}
+	
+	public function getNextQuestions()
+	{
+		if( is_null( $this->_nextQuestions ) )
+		{
+			$this->_nextQuestions = new Collection();
+			$outlet = $this->getDB();
+			$orders = $outlet->
+				from( 'QuestionnaireOrder' )->
+				where( '{QuestionnaireOrder.QuestionId} = ?', array(
+					$this->Id,
+				))->
+				find();
+			foreach( $orders as $order )
+				$this->_nextQuestions->add( $order->getNextQuestion() );
+		}
 		return $this->_nextQuestions;
 	}
 	
-	public function setQuestions( Collection $nextQuestions )
+	public function setNextQuestions( Collection $nextQuestions )
 	{
 		$this->_nextQuestions = $nextQuestions;
 	}
@@ -85,7 +106,7 @@ class Question extends Model
 	public function hasUserAnswers( Token $token )
 	{
 		foreach( $this->getAnswers() as $answer )
-			if( $token->getAnswerFor( $answer, false ) != false )
+			if( $answer->getUserAnswer( $token, false ) != false )
 				return true;
 		return false;
 	}

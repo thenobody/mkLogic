@@ -110,11 +110,12 @@ return array(
 				'associations' => array(
 					array( 'many-to-one', 'Questionnaire', array( 'key' => 'QuestionnaireId' ) ),
 					array( 'one-to-many', 'QuestionGroup', array( 'key' => 'QuestionId' ) ),
-					array( 'many-to-many', 'Question', array(
+/*					array( 'many-to-many', 'Question', array(
 						'table'				=>	'questionnaire_order',
 						'tableKeyLocal'		=>	'question_id',
 						'tableKeyForeign'	=>	'next_question_id',
 					) ),
+*/
 					array( 'one-to-many', 'ValidationOrder', array( 'key' => 'QuestionId' ) ),
 					array( 'one-to-many', 'FilteringOrder', array( 'key' => 'QuestionId' ) ),
 				),
@@ -160,7 +161,7 @@ return array(
 				),
 				'associations' => array(
 					array( 'many-to-one', 'AnswerGroup', array( 'key' => 'AnswerGroupId' ) ),
-					array( 'one-to-many', 'Constraint', array( 'key' => 'AnswerId' ) ),
+//					array( 'one-to-many', 'Constraint', array( 'key' => 'AnswerId' ) ),
 					array( 'one-to-many', 'UserAnswer', array( 'key' => 'AnswerId' ) ),
 				),
 			),

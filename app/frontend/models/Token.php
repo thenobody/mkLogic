@@ -37,12 +37,5 @@ class Token extends Model
 		$this->_userAnswers = $userAnswers;
 	}
 	
-	public function getAnswerFor( Answer $answer, $default = false )
-	{
-		$userAnswers = $this->getUserAnswers();
-		foreach( $userAnswers as $userAnswer )
-			if( $userAnswer->getAnswer()->Id == $answer->Id )
-				return $userAnswer;
-		return $default;
-	}
+
 }

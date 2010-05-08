@@ -64,7 +64,7 @@ class QuestionGraph
 				$this->addNode( $node );
 			}
 			
-			foreach( $question->getQuestions() as $nextQuestion )
+			foreach( $question->getNextQuestions() as $nextQuestion )
 			{
 				$nextNode = $this->getNodeByQuestionName( $nextQuestion->Name );
 				if( !$nextNode )
@@ -90,12 +90,18 @@ class QuestionGraph
 		return $this->_nodeMap;
 	}
 	
-	private function getNodeByQuestionName( $name, $default = false )
+	public function getNodeByQuestionName( $name, $default = false )
 	{
 		$map = $this->getNodeMap();
 		if( isset( $map[ $name ] ) )
 			return $map[ $name ];
 		return $default;
+	}
+	
+	public function getNodeByAnswer( Answer $answer, $default = false )
+	{
+		$question = $answer->getAnswerGroup()->getQuestionGroup()->getQuestion();
+		return $this->getNodeByQuestionName( $question->Name );
 	}
 	
 	private function addNode( QuestionGraphNode $node )

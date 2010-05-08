@@ -25,4 +25,12 @@ class QuestionGroup extends Model
 	{
 		$this->_answerGroups = $answerGroups;
 	}
+	
+	public function getAnswerGroupByName( $name, $default = false )
+	{
+		foreach( $this->getAnswerGroups() as $answerGroup )
+			if( $answerGroup->Name == $name )
+				return $answerGroup;
+		return $default;
+	}
 }

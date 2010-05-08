@@ -55,9 +55,13 @@ class QuestionnaireDispatcher extends BaseComponent
 	
 	public function prepare()
 	{
-		$this->validateAndSaveAnswers(); // mega todo
-		$nextQuestion = $this->findNextQuestion();
-		$this->setNextQuestion( $nextQuestion );
+		$graph = $this->generateQuestionGraph();
+		$this->validateAndSaveAnswers( $graph ); // mega todo
+		$nextQuestion = $this->findNextQuestion( $graph );
+		if( $nextQuestion )
+			$this->setNextQuestion( $nextQuestion );
+		else
+			$this->getErrors()->set( 'finished', 'Questionnaire reached it\'s end.' );
 	}
 	
 	private function generateQuestionGraph()
@@ -70,17 +74,24 @@ class QuestionnaireDispatcher extends BaseComponent
 		return $questionGraph;
 	}
 	
-	private function validateAndSaveAnswers()
-	{
-		// validate questionnaire availability
-		// validate answer
-		// save this shit
-	}
-	
-	private function findNextQuestion()
+	private function validateAndSaveAnswers( QuestionGraph $graph )
 	{
 		$token = $this->getToken();
-		$graph = $this->generateQuestionGraph();
+		$questionnaire = $token->getQuestionnaire();
+		$response = new RequestProcessor( $token, $graph );
+		$response->addAnswers();
+		
+		$validation = new ValidationProcessor( $token, $graph );
+		$currentNode = $graph->getCurrentNodeFor( $token );
+		$valid = $validation->evaluateNode( $currentNode );
+		
+		if( $valid )
+			$this->getDB()->save( $questionnaire );
+	}
+	
+	private function findNextQuestion( QuestionGraph $graph )
+	{
+		$token = $this->getToken();
 		$nextQuestion = $this->getFilteredNextQuestion( $graph );
 		
 		return $nextQuestion;

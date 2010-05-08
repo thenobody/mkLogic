@@ -3,10 +3,20 @@
 class FilteringOrder extends Model
 {
 	private
+		$_question,
 		$_constraint,
 		$_nextConstraint,
 		$_logicalOperator;
-		
+	
+	public function getQuestion()
+	{
+		return $this->_question;
+	}
+
+	public function setQuestion( Question $question )
+	{
+		$this->_question = $question;
+	}
 	
 	public function getConstraint()
 	{

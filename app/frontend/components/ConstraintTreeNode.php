@@ -208,7 +208,19 @@ class ConstraintTreeNode extends BaseComponent
 	{
 		$result = false;
 		$constraint = $this->getValue();
-		$userAnswer = $token->getAnswerFor( $constraint->getAnswer() );
+		
+		$node = $graph->getNodeByAnswer( $constraint->getAnswer() );
+		$question = $node->getQuestion();
+		$answers = $question->getAnswers();
+		$answer = null;
+		foreach( $answers as $tmpAnswer )
+			if( $tmpAnswer->Id == $constraint->getAnswer()->Id )
+			{
+				$answer = $tmpAnswer;
+				break;
+			}
+		
+		$userAnswer = $answer->getUserAnswer( $token );
 		
 		switch( $constraint->getConstraintRule()->Name )
 		{

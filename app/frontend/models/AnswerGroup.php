@@ -27,6 +27,14 @@ class AnswerGroup extends Model
 		$this->_answers = $answers;
 	}
 	
+	public function getAnswerByName( $name, $default = false )
+	{
+		foreach( $this->getAnswers() as $answer )
+			if( $answer->Name == $name )
+				return $answer;
+		return $default;
+	}
+	
 	public function getAnswerType()
 	{
 		return $this->_answerType;
