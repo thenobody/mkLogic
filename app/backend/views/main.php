@@ -7,6 +7,7 @@
 	
 	<!-- BEGIN JAVASCRIPT LIBRARIES-->
 		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript" src="/js/base.js"></script>
 	<!-- END LIBRARIES -->
 	
 	<!-- BEGIN CSS STYLES -->

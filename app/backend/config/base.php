@@ -13,6 +13,11 @@ return array(
 	'appDir'	=> $appDir,
 
 	'questionnaireSchemasDir'	=> dirname( dirname( $appDir ) ) . '/schemas',
+	
+	// CSS selectors
+	'navigMenu'		=>	'navig',
+	'menuLeft'		=>	'left-menu',
+	'mainContent'	=>	'main',
 
 	// internal components configuration
 	'Request'	=> array(
@@ -92,6 +97,7 @@ return array(
 				'associations' => array(
 					array( 'one-to-one', 'QuestionnaireStatus', array( 'key' => 'StatusId' ) ),
 					array( 'one-to-many', 'Question', array( 'key' => 'QuestionnaireId' ) ),
+					array( 'one-to-many', 'Token', array( 'key' => 'QuestionnaireId' ) ),
 				),
 			),
 			'Question'	=> array(

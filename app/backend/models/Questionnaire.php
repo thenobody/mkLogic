@@ -4,7 +4,8 @@ class Questionnaire extends QuestionnaireModel
 {
 	private
 		$_status,
-		$_questions;
+		$_questions,
+		$_tokens;
 	
 	public function getQuestionnaireStatus()
 	{
@@ -36,6 +37,16 @@ class Questionnaire extends QuestionnaireModel
 				return $question;
 		}
 		return $default;
+	}
+
+	public function getTokens()
+	{
+		return $this->_tokens;
+	}
+
+	public function setTokens( Collection $tokens )
+	{
+		$this->_tokens = $tokens;
 	}
 
 }
