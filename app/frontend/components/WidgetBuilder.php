@@ -51,7 +51,7 @@ class WidgetBuilder
 	
 	static public function getSubmitButton( $label )
 	{
-		$format = '<button name="submit" type="submiy" value="submit">%s</button>';
+		$format = '<button name="submit" type="submit" value="submit">%s</button>';
 		return sprintf( $format, $label );
 	}
 	

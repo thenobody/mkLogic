@@ -1,12 +1,36 @@
 html, body { height: 100%; }
 
-#page { border: 1px solid black; height: 100%; }
+li.table-row { border: 1px solid black; }
+li.table-row { }
+	li.table-div { display: inline; }
+	
+
+#page { border: 1px solid black; min-height: 100%; }
 	#navig { border: 1px solid black; }
 		#navig ul { }
 			#navig ul li { display: inline; }
 	
-	#main { margin-left: 250px; border: 1px solid red; }
-	
-	#left-menu { border: 2px solid black; width: 250px; float: left; }
-		#left-menu #test { border: 3px solid purple; height: 200px; }
-	
+	#main { border: 1px solid red; }
+		#main-tabs ul li { display: inline; }
+		
+		#edit-questionnaire { }
+			#edit-left-menu { }
+			#edit-workplace { }
+				#edit-questions { }
+					#edit-questions div.edit-question { border: 1px solid black; }
+						#edit-questions div.edit-question div.header { background: #dddddd; }
+						#edit-questions div.edit-question div.content { }
+							#edit-questions div.edit-question div.content div.button input { display: inline; }
+						
+							#edit-questions div.edit-answers ul li{ display: block; }
+							#edit-questions div.edit-answers ul li ul li { display: table-cell; text-align: center; }
+								#edit-questions div.edit-answers ul.headings { font-weight: bold; }
+									#edit-questions div.edit-answers ul li.col-id { width: 2.5em; border: 1px solid black; }
+									#edit-questions div.edit-answers ul li.col-name { width: 5em; border: 1px solid gray; }
+									#edit-questions div.edit-answers ul li.col-label { width: 40em; border: 1px solid gray; }
+									#edit-questions div.edit-answers ul li.col-value { width: 6em; border: 1px solid gray; }
+									#edit-questions div.edit-answers ul li.col-text { width: 3em; border: 1px solid gray; }
+									#edit-questions div.edit-answers ul.headings li { border: 1px solid black; }
+										#edit-questions div.edit-answers input.name { width: 100%; }
+										#edit-questions div.edit-answers input.label { width: 100%; }
+										#edit-questions div.edit-answers input.value { width: 100%; }

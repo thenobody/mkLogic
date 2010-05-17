@@ -31,6 +31,14 @@ class Main extends AppController
 		$this->forward( 'Main', 'index' );
 	}
 	
+	public function _preview()
+	{
+		// admin auth should go here
+		$questionId = $this->getRequest()->get( 'qid' );
+		$this->question = $this->getOutlet()->load( 'Question', $questionId);
+		$this->forward( 'Presentation', $this->question->Template );
+	}
+	
 	private function validateLoginFromRequest()
 	{
 		$token = $this->getRequest()->get( 'token', false );

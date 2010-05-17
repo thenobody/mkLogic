@@ -40,7 +40,7 @@ class Core
 					set_include_path( get_include_path() . PATH_SEPARATOR . $path . $file );
 		set_include_path( get_include_path() . PATH_SEPARATOR . $path );
 	}
-	
+
 	/*
 		autoloader method for including classes
 	*/

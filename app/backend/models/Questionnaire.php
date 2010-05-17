@@ -48,5 +48,11 @@ class Questionnaire extends QuestionnaireModel
 	{
 		$this->_tokens = $tokens;
 	}
+	
+	public function getJSON()
+	{
+		$props = $this->serializeProperties();
+		return json_encode( $props );
+	}
 
 }
