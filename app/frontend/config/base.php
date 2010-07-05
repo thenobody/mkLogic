@@ -155,6 +155,7 @@ return array(
 					'Text'			=>	array( 'text', 'bool' ),
 					'Value'			=>	array( 'value', 'varchar' ),
 					'Label'			=>	array( 'label', 'varchar' ),
+					'Random'		=>	array( 'random_position', 'bool' ),
 					'Limit'			=>	array( 'answer_limit', 'int' ),
 					'AnswerGroupId'	=>	array( 'answer_group_id', 'int' ),
 				),

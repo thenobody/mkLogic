@@ -190,5 +190,53 @@ class WidgetBuilder
 
 		return $widget;
 	}
+	
+	static public function randomizeAnswers( Collection $answers )
+	{
+		$result = array();
+		
+		// randomize
+		$staticMap = array();
+		$randomMap = array();
+		
+		$tmpAnswers = $answers->toArray();
+		foreach( $tmpAnswers as $key => $answer )
+			if( $answer->Random )
+				$randomMap[ $key ] = $answer;
+			else
+				$staticMap[] = $key;
+		
+		foreach( $randomMap as $key => $value )
+		{
+			$keys = array_keys( $randomMap );
+			$rand = $keys[ rand( 0, count( $keys )-1 ) ];
+			while( ( $rand = $keys[ rand( 0, count( $keys )-1 ) ] ) == $key ) {}
+			
+			$tmp = $randomMap[ $rand ];
+			$randomMap[ $rand ] = $value;
+			$randomMap[ $key ] = $tmp;
+		}
+		
+		/*foreach( $staticMap as $key => $value )
+			$result[ $value ] = $tmpAnswers[ $value ];
+			
+		foreach( $randomMap as $key => $value )
+		{
+			$rand = rand( 0, count( $randomMap )-1 );
+			
+		}
+			
+		print_r( $randomMap );
+		/*for( $answers as $
+		for($i=0; $i<count($odpovede); $i++)
+		{
+			$rnd;
+			while(($rnd = rand(0,count($odpovede)-1)) == $i) {}
+			$tmp = $map[$rnd];
+			$map[$rnd] = $map[$i];
+			$map[$i] = $tmp;
+		}*/
+		return $answers;
+	}
 
 }
