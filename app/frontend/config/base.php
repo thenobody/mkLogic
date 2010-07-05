@@ -87,7 +87,6 @@ return array(
 				'props' => array(
 					'Id'			=>	array( 'id', 'int', array( 'pk'=>true, 'autoIncrement'=>true ) ),
 					'Name'			=>	array( 'name', 'varchar' ),
-					'File'			=>	array( 'file', 'varchar' ),
 					'Continuous'	=>	array( 'continuous', 'bool' ),
 					'StatusId'		=>	array( 'status_id', 'int' ),
 				),

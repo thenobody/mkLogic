@@ -72,7 +72,6 @@ class QuestionnaireBuilder extends BaseComponent
 		
 		$questionnaire = new Questionnaire();
 		$questionnaire->Name = (string) $attributes[ 'name' ];
-		$questionnaire->File = $filename;
 		$questionnaire->Continuous = ( (string) $attributes[ 'continuous' ] == 'true' );
 		$questionnaire->StatusId = 1;
 		$questionnaire->setXml( $node );
@@ -168,6 +167,7 @@ class QuestionnaireBuilder extends BaseComponent
 			$answerModel->Text = ( (string) $attributes[ 'text' ] == 'true' );
 			$answerModel->Value = (string) $attributes[ 'value' ];
 			$answerModel->Label = (string) $attributes[ 'label' ];
+			$answerModel->Random = ( (string) $attributes[ 'random' ] == 'true' );
 			$answerModel->Limit = (int) $attributes[ 'limit' ];
 			
 			$answerModel->setXml( $answer );

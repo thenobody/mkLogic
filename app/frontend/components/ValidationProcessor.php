@@ -19,7 +19,7 @@ class ValidationProcessor extends Processor
 		$token = $this->getToken();
 		$graph = $this->getQuestionGraph();
 		$tree = $this->buildTree( $node );
-
+		
 		return $tree->evaluate( $token, $graph );
 	}
 

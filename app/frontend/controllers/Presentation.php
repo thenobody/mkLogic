@@ -38,7 +38,12 @@ class Presentation extends AppController
 
 	}
 	
-	public function _lines()
+	public function _checkbox_vertical()
+	{
+
+	}
+	
+	public function _text()
 	{
 
 	}

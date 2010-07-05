@@ -56,8 +56,9 @@ class QuestionnaireDispatcher extends BaseComponent
 	public function prepare()
 	{
 		$graph = $this->generateQuestionGraph();
-		$this->validateAndSaveAnswers( $graph ); // mega todo
+		$this->validateAndSaveAnswers( $graph );
 		$nextQuestion = $this->findNextQuestion( $graph );
+		
 		if( $nextQuestion )
 			$this->setNextQuestion( $nextQuestion );
 		else
@@ -87,6 +88,7 @@ class QuestionnaireDispatcher extends BaseComponent
 		
 		if( $valid )
 			$this->getDB()->save( $questionnaire );
+		
 	}
 	
 	private function findNextQuestion( QuestionGraph $graph )

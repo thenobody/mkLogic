@@ -90,7 +90,6 @@ return array(
 				'props' => array(
 					'Id'			=>	array( 'id', 'int', array( 'pk'=>true, 'autoIncrement'=>true ) ),
 					'Name'			=>	array( 'name', 'varchar' ),
-					'File'			=>	array( 'file', 'varchar' ),
 					'Continuous'	=>	array( 'continuous', 'bool' ),
 					'StatusId'		=>	array( 'status_id', 'int' ),
 				),
@@ -158,6 +157,7 @@ return array(
 					'Text'			=>	array( 'text', 'bool' ),
 					'Value'			=>	array( 'value', 'varchar' ),
 					'Label'			=>	array( 'label', 'varchar' ),
+					'Random'		=>	array( 'random_position', 'bool' ),
 					'Limit'			=>	array( 'answer_limit', 'int' ),
 					'AnswerGroupId'	=>	array( 'answer_group_id', 'int' ),
 				),
@@ -203,6 +203,8 @@ return array(
 				'props' => array(
 					'Id'			=>	array( 'id', 'int', array( 'pk'=>true, 'autoIncrement'=>true ) ),
 					'Name'			=>	array( 'name', 'varchar' ),
+					'Regexp'		=>	array( 'rule_regexp', 'varchar' ),
+					'Not'			=>	array( 'not_modifier', 'bool' ),
 				),
 			),
 			'FilteringOrder' => array(

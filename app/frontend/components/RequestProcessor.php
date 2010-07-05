@@ -17,7 +17,7 @@ class RequestProcessor extends Processor
 		
 		if( !$answers )
 			return;
-		
+
 		foreach( $answers as $answerName => $answerValues )
 			$this->processAnswer( $answerName, $answerValues );
 	}
@@ -45,7 +45,7 @@ class RequestProcessor extends Processor
 			$answer = $answerGroup->getAnswerByName( $answerName, false );
 			if( !$answer )
 				throw new EAnswerNotFound( "$name => $value" );
-			$txtValue = ( $answer->Text ) ? $value : null;
+			$txtValue = ( $answerGroup->getAnswerType()->Name == 'text' || $answer->Text ) ? $value : null;
 			$answer->addUserAnswerByToken( $token, $txtValue );
 		}
 	}

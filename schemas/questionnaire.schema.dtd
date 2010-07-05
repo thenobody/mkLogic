@@ -29,6 +29,7 @@
 <!ATTLIST answer text (true|false) "false">
 <!ATTLIST answer value CDATA #REQUIRED>
 <!ATTLIST answer label CDATA #IMPLIED>
+<!ATTLIST answer random (true|false) "false">
 
 <!ATTLIST not-empty question-group CDATA #IMPLIED>
 <!ATTLIST not-empty answer-group CDATA #IMPLIED>

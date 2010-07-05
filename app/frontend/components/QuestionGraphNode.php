@@ -65,14 +65,13 @@ class QuestionGraphNode
 	
 	public function getLastAnsweredChild( Token $token )
 	{
-		if( !$this->hasNeighbours() )
-			return false;
+		//if( !$this->hasNeighbours() )
+		//	return false;
 		
 		foreach( $this->getNeighbours() as $node )
 		{
 			$question = $node->getQuestion();
-			
-			$test = $question->hasUserAnswers( $token );
+
 			if( $question->hasUserAnswers( $token ) )
 				return $node->getLastAnsweredChild( $token );
 		}

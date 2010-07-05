@@ -30,8 +30,10 @@ class Answer extends Model
 	{
 		$userAnswers = $this->getUserAnswers();
 		foreach( $userAnswers as $userAnswer )
+		{
 			if( $userAnswer->getToken() == $token )
 				return $userAnswer;
+		}
 		return $default;
 	}
 	

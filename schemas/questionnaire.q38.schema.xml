@@ -1,0 +1,727 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE questionnaire SYSTEM "questionaire.schema.dtd">
+<questionnaire name="q38-2010-07-04" continuous="true">
+	<!-- QUESTION N1 -->
+	<question name="n1" template="checkbox_vertical" first="true">
+		Využili ste už niekedy internet k uskutočneniu nákupu?
+		<next-questions>
+			<question name="n2" />
+			<question name="n3" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="checkbox" label="" >
+				<answer name="a1" text="false" value="1" label="tovaru" />
+				<answer name="a2" text="false" value="2" label="služby" />
+				<answer name="a3" text="false" value="3" label="nie, nevyužil" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<and>
+				<constraint question="n1" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+				<if>
+					<constraint question="n1" question-group="qg1" answer-group="ag1" answer="a3" rule="not-empty" />
+					<and>
+						<constraint question="n1" question-group="qg1" answer-group="ag1" answer="a1" rule="empty" />
+						<constraint question="n1" question-group="qg1" answer-group="ag1" answer="a2" rule="empty" />
+					</and>
+				</if>
+			</and>
+		</validation>
+	</question>
+	<!-- #END QUESTION N1 -->
+	
+	<!-- QUESTION N2 -->
+	<question name="n2" template="checkbox_vertical">
+		Aké sú dôvody, prečo ste doteraz ešte nevyužili možnosť nákupu tovaru alebo služby cez internet?
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="checkbox" label="" >
+				<answer name="a1" text="false" value="1" label="nebol vhodný tovar" />
+				<answer name="a2" text="false" value="2" label="tovar nie je možné si osobne prezrieť, vyskúšať" />
+				<answer name="a3" text="false" value="3" label="vysoká cena resp. cena nie je výrazne nižšia ako v klasických obchodoch" />
+				<answer name="a4" text="false" value="4" label="internetový obchod neposkytol možnosť nákupu tovaru na splátky" />
+				<answer name="a5" text="false" value="5" label="obávam sa problémov s doručením tovaru" />
+				<answer name="a6" text="false" value="6" label="nechcem platiť poplatky za doručenie tovaru" />
+				<answer name="a7" text="false" value="7" label="nedôvera k predajcovi" />
+				<answer name="a8" text="false" value="8" label="nedôvera z peňažných transakcií na internete" />
+				<answer name="a9" text="false" value="9" label="nevyznám sa v tom, asi by som to nezvládol/la" />
+				<answer name="a10" text="false" value="10" label="stačia mi kamenné (klasické) obchody" />
+				<answer name="a11" text="false" value="11" label="v nakupovaní cez internet nevidím žiadne výhody v porovnaní s nákupom v klasickom obchode" />
+				<answer name="a12" text="true" value="12" label="iný dôvod:" />
+				<answer name="a13" text="false" value="13" label="neviem" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n2" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+		<filtering>
+			<constraint question="n1" question-group="qg1" answer-group="ag1" answer="a3" rule="not-empty" />
+		</filtering>
+	</question>
+	<!-- #END QUESTION N2 -->
+	
+	<!-- QUESTION N3 -->
+	<question name="n3" template="radio_vertical">
+		Prečo ste uprednostnili nákup cez internet oproti nákupu v bežnom (kamennom) obchode? Aký je Váš hlavný motív?
+		<next-questions>
+			<question name="n4" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" random="true" label="internetový obchod ponúka ten istý tovar za nižšiu cenu /nižšia cena/" />
+				<answer name="a2" text="false" value="2" random="true" label="tovar si vyberiem pohodlne z domu /pohodlie/" />
+				<answer name="a3" text="false" value="3" random="true" label="na internete nájdem širšiu ponuku produktov /široká ponuka/" />
+				<answer name="a4" text="false" value="4" random="true" label="tovar mi môže byť doručený domov /možnosť doručenia zásielky/" />
+				<answer name="a5" text="false" value="5" random="true" label="na internete nájdem viac informácií o produkte /dostatok informácii/" />
+				<answer name="a6" text="true" value="6" label="iný dôvod:" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n3" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+		<filtering>
+			<and>
+				<or>
+					<constraint question="n1" question-group="qg1" answer-group="ag1" answer="a1" rule="not-empty" />
+					<constraint question="n1" question-group="qg1" answer-group="ag1" answer="a2" rule="not-empty" />
+				</or>
+				<constraint question="n1" question-group="qg1" answer-group="ag1" answer="a3" rule="empty" />
+			</and>
+		</filtering>
+	</question>
+	<!-- #END QUESTION N3 -->
+	
+	<!-- QUESTION N4 -->
+	<question name="n4" template="checkbox_vertical">
+		Prečo ste tovar alebo službu nakupovali cez internet?
+		<next-questions>
+			<question name="n5" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" random="true" label="pretože to bolo pohodlnejšie a nemusel som strácať čas behaním po obchodoch" />
+				<answer name="a2" text="false" value="2" random="true" label="pretože tovar bol pre mňa ľahšie dostupný cez internet ako v obchodoch" />
+				<answer name="a3" text="false" value="3" random="true" label="pretože cena tovaru bola nižšia ako v klasickom obchode" />
+				<answer name="a4" text="false" value="4" random="true" label="pretože som dostal výhodné splátky" />
+				<answer name="a5" text="false" value="5" random="true" label="pretože ma tovar na internete zaujal" />
+				<answer name="a6" text="false" value="6" random="true" label="pretože  na internete je viac dostupných informácií o tovare" />
+				<answer name="a7" text="true" value="7" label="iný dôvod:" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n4" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N4 -->
+	
+	<!-- QUESTION N5 -->
+	<question name="n5" template="radio_vertical">
+		Aký spôsob platby preferujete pri nákupe cez internet?
+		<next-questions>
+			<question name="n6" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" random="true" label="platbu cez internetbanking" />
+				<answer name="a2" text="false" value="2" random="true" label="platbu cez kreditnú kartu (úverová karta)" />
+				<answer name="a3" text="false" value="3" random="true" label="platbu cez debetnú kartu (karta k vášmu osobnému účtu)" />
+				<answer name="a4" text="false" value="4" random="true" label="platbu pri dobierke tovaru" />
+				<answer name="a5" text="false" value="5" random="true" label="objednanie tovaru cez internet a následné vyzdvihnutie objednaného tovaru i platba priamo v predajni" />
+				<answer name="a6" text="true" value="6" label="iný dôvod:" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n5" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N5 -->
+	
+	<!-- QUESTION N6 -->
+	<question name="n6" template="radio_vertical">
+		Využili ste už niekedy možnosť platby na splátky pri nákupe cez internet?
+		<next-questions>
+			<question name="n7" />
+			<question name="n8" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" label="Áno, viackrát" />
+				<answer name="a2" text="false" value="2" label="Áno, raz" />
+				<answer name="a3" text="false" value="3" label="Zatiaľ nie, ale uvažujem o tom" />
+				<answer name="a4" text="false" value="4" label="Zatiaľ nie a ani o tom neuvažujem" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n6" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N6-->
+	
+	<!-- QUESTION N7 -->
+	<question name="n7" template="radio_vertical">
+		Čo je pre vás rozhodujúce, keď uvažujete o nákupe na splátky?
+		<next-questions>
+			<question name="n8" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" random="true" label="výška akontácie " />
+				<answer name="a2" text="false" value="2" random="true" label="výška mesačnej splátky" />
+				<answer name="a3" text="false" value="3" random="true" label="počet splátok" />
+				<answer name="a4" text="false" value="4" random="true" label="RPMN (ročná percentuálna miera nákladov)" />
+				<answer name="a5" text="true" value="5" label="iný dôvod:" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n7" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+		<filtering>
+			<or>
+				<constraint question="n6" question-group="qg1" answer-group="ag1" answer="a1" rule="not-empty" />
+				<constraint question="n6" question-group="qg1" answer-group="ag1" answer="a2" rule="not-empty" />
+			</or>
+		</filtering>
+	</question>
+	<!-- #END QUESTION N7 -->
+	
+	<!-- QUESTION N8 -->
+	<question name="n8" template="radio_vertical">
+		Aký spôsob doručenia tovaru objednanom cez internet preferujete?
+		<next-questions>
+			<question name="n9" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" label="preferujem doručenie Slovenskou poštou" />
+				<answer name="a2" text="false" value="2" label="preferujem doručenie kuriérom v stanovenom čase a kvalite za priplatok" />
+				<answer name="a3" text="false" value="3" label="preferujem doručenie kuriérom v čo najnižšej cene" />
+				<answer name="a4" text="false" value="4" label="preferujem vyzdvihnutie si tovaru osobne" />
+				<answer name="a5" text="true" value="5" label="preferujem iný spôsob:" />
+				<answer name="a6" text="false" value="6" label="neviem" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n8" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N8 -->
+	
+	<!-- QUESTION N9 -->
+	<question name="n9" template="radio_vertical">
+		Aký prípadný spôsob komunikácie s obchodníkom pri nákupe tovaru cez internet preferujete?
+		<next-questions>
+			<question name="n10" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" label="telefonický kontakt" />
+				<answer name="a2" text="false" value="2" label="email" />
+				<answer name="a3" text="false" value="3" label="diskusné fórum" />
+				<answer name="a4" text="false" value="4" label="messenger, skype a pod." />
+				<answer name="a5" text="false" value="5" label="SMS" />
+				<answer name="a6" text="false" value="6" label="neviem" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n9" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N9 -->
+	
+	<!-- QUESTION N10 -->
+	<question name="n10" template="checkbox_vertical">
+		Na základe akých kritérií sa rozhodujete pri výbere internetového obchodu? Z nasledujúceho zoznamu vyberte 3 kritériá, ktoré považujete Vy osobne za najdôležitejšie.
+		<next-questions>
+			<question name="n11" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="checkbox" label="">
+				<answer name="a1" text="false" value="1" random="true" label="známosť internetového obchodu" />
+				<answer name="a2" text="false" value="2" random="true" label="obľúbenosť internetového obchodu" />
+				<answer name="a3" text="false" value="3" random="true" label="bohatosť sortimentu" />
+				<answer name="a4" text="false" value="4" random="true" label="podrobný popis tovaru s fotografiou" />
+				<answer name="a5" text="false" value="5" random="true" label="pohodlné a jednoduché vyhľadávanie sortimentu" />
+				<answer name="a6" text="false" value="6" random="true" label="dizajn webovej stránky internetového obchodu" />
+				<answer name="a7" text="false" value="7" random="true" label="cena tovaru " />
+				<answer name="a8" text="false" value="8" random="true" label="spôsob platby v internetovom obchode " />
+				<answer name="a9" text="false" value="9" random="true" label="možnosť nákupu na splátky" />
+				<answer name="a10" text="false" value="10" random="true" label="predchádzajúce skúsenosti s týmto obchodom" />
+				<answer name="a11" text="false" value="11" random="true" label="odporúčanie známych alebo iných zákazníkov" />
+				<answer name="a12" text="false" value="12" random="true" label="možnosť vybrať si spôsob doručenia tovaru" />
+				<answer name="a13" text="false" value="13" random="true" label="výška ceny za doručenie tovaru" />
+				<answer name="a14" text="true" value="14" label="iný" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n10" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N10 -->
+	
+	<!-- QUESTION N11 -->
+	<question name="n11" template="radio_vertical">
+		Z akého dôvodu najčastejšie uprednostníte služby jedného internetového obchodu pred iným internetovým obchodom?
+		<next-questions>
+			<question name="n12" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" label="vyberiem si ten, ktorý ponúka nižšiu cenu /nižšia cena/" />
+				<answer name="a2" text="false" value="2" label="služby daného internetového obchodu považujem za spoľahlivé (vlastné skúsenosti resp. odporúčanie známych) /spoľahlivé služby/" />
+				<answer name="a3" text="false" value="3" label="poskytuje vždy aktuálne informácie /aktuálnosť informácií/" />
+				<answer name="a4" text="false" value="4" label="páčia sa mi spoločenské aktivity tohto obchodu (podpora rôznych projektov)" />
+				<answer name="a5" text="false" value="5" label="mám možnosť zásielku si vyzdvihnúť aj osobne (neplatím poštovné)" />
+				<answer name="a6" text="false" value="6" label="vyberiem si ten, ktorý ponúka najkratšiu dodaciu lehotu (dodacia lehota)" />
+				<answer name="a7" text="true" value="7" label="iný dôvod" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n11" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N11 -->
+	
+	<!-- QUESTION N12 -->
+	<question name="n12" template="radio_vertical">
+		Je pre vás dôležité, aby internetový obchod, ktorého služby využívate, mal sídlo na Slovensku?
+		<next-questions>
+			<question name="n13" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" label="áno, uprednostňujem nákup v slovenských internetových obchodoch" />
+				<answer name="a2" text="false" value="2" label="nie, naopak uprednostňujem nákup v zahraničných internetových obchodoch" />
+				<answer name="a3" text="false" value="3" label="nie je to pre mňa dôležité, nerozlišujem slovenské a zahraničné internetové obchody" />
+				<answer name="a4" text="false" value="4" label="neviem" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n12" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N12 -->
+	
+	<!-- QUESTION N13 -->
+	<question name="n13" template="radio_vertical">
+		Ktorý internetový obchod navštevujete najčastejšie?
+		<next-questions>
+			<question name="n14" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" random="true" label="amazon.com" />
+				<answer name="a2" text="false" value="2" random="true" label="anarchy.sk" />
+				<answer name="a3" text="false" value="3" random="true" label="audioexpert.sk" />
+				<answer name="a4" text="false" value="4" random="true" label="bartsport.sk" />
+				<answer name="a5" text="false" value="5" random="true" label="brloh.sk" />
+				<answer name="a6" text="false" value="6" random="true" label="datart.sk" />
+				<answer name="a7" text="false" value="7" random="true" label="dvdbest.sk" />
+				<answer name="a8" text="false" value="8" random="true" label="e-bay.com" />
+				<answer name="a9" text="false" value="9" random="true" label="elektroexpert.sk" />
+				<answer name="a10" text="false" value="10" random="true" label="fotoexpert.sk" />
+				<answer name="a11" text="false" value="11" random="true" label="gorila.sk" />
+				<answer name="a12" text="false" value="12" random="true" label="hej.sk" />
+				<answer name="a13" text="false" value="13" random="true" label="hop.sk" />
+				<answer name="a14" text="false" value="14" random="true" label="chrono.sk" />
+				<answer name="a15" text="false" value="15" random="true" label="joy.sk" />
+				<answer name="a16" text="false" value="16" random="true" label="martinus.sk" />
+				<answer name="a17" text="false" value="17" random="true" label="nay.sk" />
+				<answer name="a18" text="false" value="18" random="true" label="neckermann.sk" />
+				<answer name="a19" text="false" value="19" random="true" label="pcexpert.sk" />
+				<answer name="a20" text="false" value="20" random="true" label="pixmania.sk" />
+				<answer name="a21" text="false" value="21" random="true" label="quelle.sk" />
+				<answer name="a22" text="false" value="22" random="true" label="ticketportal.sk" />
+				<answer name="a23" text="false" value="23" random="true" label="videoexpert.sk" />
+				<answer name="a24" text="false" value="24" random="true" label="realshop.sk" />
+				<answer name="a25" text="true" value="25" label="iný, vypíšte" />
+				<answer name="a26" text="false" value="26" label="neviem" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n13" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N13 -->
+	
+	<!-- QUESTION N14 -->
+	<question name="n14" template="radio_vertical">
+		Ktorý internetový obchod považujete za najlepší?
+		<next-questions>
+			<question name="n15" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" random="true" label="amazon.com" />
+				<answer name="a2" text="false" value="2" random="true" label="anarchy.sk" />
+				<answer name="a3" text="false" value="3" random="true" label="audioexpert.sk" />
+				<answer name="a4" text="false" value="4" random="true" label="bartsport.sk" />
+				<answer name="a5" text="false" value="5" random="true" label="brloh.sk" />
+				<answer name="a6" text="false" value="6" random="true" label="datart.sk" />
+				<answer name="a7" text="false" value="7" random="true" label="dvdbest.sk" />
+				<answer name="a8" text="false" value="8" random="true" label="e-bay.com" />
+				<answer name="a9" text="false" value="9" random="true" label="elektroexpert.sk" />
+				<answer name="a10" text="false" value="10" random="true" label="fotoexpert.sk" />
+				<answer name="a11" text="false" value="11" random="true" label="gorila.sk" />
+				<answer name="a12" text="false" value="12" random="true" label="hej.sk" />
+				<answer name="a13" text="false" value="13" random="true" label="hop.sk" />
+				<answer name="a14" text="false" value="14" random="true" label="chrono.sk" />
+				<answer name="a15" text="false" value="15" random="true" label="joy.sk" />
+				<answer name="a16" text="false" value="16" random="true" label="martinus.sk" />
+				<answer name="a17" text="false" value="17" random="true" label="nay.sk" />
+				<answer name="a18" text="false" value="18" random="true" label="neckermann.sk" />
+				<answer name="a19" text="false" value="19" random="true" label="pcexpert.sk" />
+				<answer name="a20" text="false" value="20" random="true" label="pixmania.sk" />
+				<answer name="a21" text="false" value="21" random="true" label="quelle.sk" />
+				<answer name="a22" text="false" value="22" random="true" label="ticketportal.sk" />
+				<answer name="a23" text="false" value="23" random="true" label="videoexpert.sk" />
+				<answer name="a24" text="false" value="24" random="true" label="realshop.sk" />
+				<answer name="a25" text="true" value="25" label="iný, vypíšte" />
+				<answer name="a26" text="false" value="26" label="neviem" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n14" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N14 -->
+	
+	<!-- QUESTION N15 -->
+	<question name="n15" template="radio_vertical">
+		Ako hodnotíte všeobecne úroveň internetových obchodov na Slovensku? Úroveň internetových obchodov je 
+		<next-questions>
+			<question name="n16" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" label="veľmi dobrá" />
+				<answer name="a2" text="false" value="2" label="dobrá" />
+				<answer name="a3" text="false" value="3" label="zlá" />
+				<answer name="a4" text="false" value="4" label="veľmi zlá" />
+				<answer name="a5" text="false" value="5" label="neviem" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n15" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N15 -->
+	
+	<!-- QUESTION N16 -->
+	<question name="n16" template="checkbox_vertical">
+		S čím nie ste spokojný pri nákupe na slovenských internetových obchodoch?
+		<next-questions>
+			<question name="n17" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="checkbox" label="">
+				<answer name="a1" text="false" value="1" label="dodacia doba" />
+				<answer name="a2" text="false" value="2" label="nedostatočná ponuka tovaru" />
+				<answer name="a3" text="false" value="3" label="aktuálnosť údajov a informácií na stránke" />
+				<answer name="a4" text="false" value="4" label="ceny tovaru" />
+				<answer name="a5" text="false" value="5" label="možnosti vyhľadávania a prehľadnosť na stránke" />
+				<answer name="a6" text="false" value="6" label="popis tovaru" />
+				<answer name="a7" text="false" value="7" label="spôsob platby" />
+				<answer name="a8" text="false" value="8" label="splátkový systém" />
+				<answer name="a9" text="false" value="9" label="komunikačná podpora" />
+				<answer name="a10" text="false" value="10" label="poštovné a balné" />
+				<answer name="a11" text="false" value="11" label="iné, uveďte: " />
+				<answer name="a12" text="false" value="12" label="neviem" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n16" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N16 -->
+	
+	<!-- QUESTION N17 -->
+	<question name="n17" template="text">
+		Ktorý druh tovarov alebo služieb podľa Vás chýba na Slovensku v predaji na internete?
+		<next-questions>
+			<question name="n18" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="text" label="">
+				<answer name="a1" text="false" value="1" label="a)" />
+				<answer name="a2" text="false" value="2" label="b)" />
+				<answer name="a3" text="false" value="3" label="c)" />
+				<answer name="a4" text="false" value="4" label="d)" />
+				<answer name="a5" text="false" value="5" label="e)" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n17" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N17 -->
+	
+	<!-- QUESTION N18 -->
+	<question name="n18" template="radio_vertical">
+		Zaregistrovali ste na internete za obdobie posledných 6 mesiacov reklamu nejakého slovenského internetového obchodu?
+		<next-questions>
+			<question name="n19" />
+			<question name="n20" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" label="áno" />
+				<answer name="a2" text="false" value="2" label="nie" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n18" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N18 -->
+	
+	<!-- QUESTION N19 -->
+	<question name="n19" template="radio_vertical">
+		Aké sú dôvody, prečo ste doteraz ešte nevyužili možnosť nákupu tovaru alebo služby cez internet?
+		<next-questions>
+			<question name="n20" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="" >
+				<answer name="a1" text="false" value="1" label="vo forme banneru " />
+				<answer name="a2" text="false" value="2" label="kontextová reklama alebo reklama v rámci vyhľadávača" />
+				<answer name="a3" text="false" value="3" label="reklama formou e-mailu" />
+				<answer name="a4" text="false" value="4" label="reklama formou článku v tematických časopisoch" />
+				<answer name="a5" text="false" value="5" label="reklama formou odporúčania - newsletter" />
+				<answer name="a6" text="true" value="6" label="iná forma reklamy, napíšte aká:" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n19" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+		<filtering>
+			<constraint question="n18" question-group="qg1" answer-group="ag1" answer="a1" rule="not-empty" />
+		</filtering>
+	</question>
+	<!-- #END QUESTION N19 -->
+	
+	<!-- QUESTION N20 -->
+	<question name="n20" template="radio_vertical">
+		Ako často ste nakupovali nejaký tovar alebo službu prostredníctvom internetu v období posledných 6 mesiacov?
+		<next-questions>
+			<question name="n21" />
+			<question name="n22" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="" >
+				<answer name="a1" text="false" value="1" label="1-krát" />
+				<answer name="a2" text="false" value="2" label="2 až 3-krát" />
+				<answer name="a3" text="false" value="3" label="4 až 6-krát" />
+				<answer name="a4" text="false" value="4" label="viac ako 6-krát" />
+				<answer name="a5" text="false" value="5" label="ani raz" />
+				<answer name="a6" text="false" value="6" label="neviem" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n20" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N20 -->
+	
+	<!-- QUESTION N21 -->
+	<question name="n21" template="checkbox_vertical">
+		Čo všetko ste kúpili prostredníctvom internetu v období posledných 6 mesiacov?
+		<next-questions>
+			<question name="n22" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="checkbox" label="">
+				<answer name="a1" text="false" value="1" label="oblečenie" />
+				<answer name="a2" text="false" value="2" label="športové vybavenie" />
+				<answer name="a3" text="false" value="3" label="nábytok, vybavenie domácnosti" />
+				<answer name="a4" text="false" value="4" label="kozmetiku" />
+				<answer name="a5" text="false" value="5" label="parfumy" />
+				<answer name="a6" text="false" value="6" label="kvety" />
+				<answer name="a7" text="false" value="7" label="potraviny" />
+				<answer name="a8" text="false" value="8" label="knihy" />
+				<answer name="a9" text="false" value="9" label="videokazety, DVD" />
+				<answer name="a10" text="false" value="10" label="CD, MC, MD" />
+				<answer name="a11" text="false" value="11" label="počítačové hry, Playstation hry" />
+				<answer name="a12" text="false" value="12" label="darčekové predmety " />
+				<answer name="a13" text="false" value="13" label="hry a hračky" />
+				<answer name="a14" text="false" value="14" label="elektronika" />
+				<answer name="a15" text="false" value="15" label="hardware" />
+				<answer name="a16" text="false" value="16" label="software" />
+				<answer name="a17" text="false" value="17" label="fotoaparáty a foto príslušenstvo" />
+				<answer name="a18" text="false" value="18" label="auto" />
+				<answer name="a19" text="false" value="19" label="mobilné telefóny a príslušenstvo" />
+				<answer name="a20" text="false" value="20" label="umenie" />
+				<answer name="a21" text="false" value="21" label="zdravotné potreby a služby" />
+				<answer name="a22" text="false" value="22" label="šperky a hodinky" />
+				<answer name="a23" text="false" value="23" label="cestovné zájazdy" />
+				<answer name="a24" text="false" value="24" label="finančné služby" />
+				<answer name="a25" text="false" value="25" label="letenky" />
+				<answer name="a26" text="false" value="26" label="lístky na rôzne podujatia" />
+				<answer name="a27" text="false" value="27" label="vzdelávacie služby" />
+				<answer name="a28" text="true" value="28" label="iné, napíšte aké:" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n21" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+		<filtering>
+			<constraint question="n20" question-group="qg1" answer-group="ag1" answer="a6" rule="empty" />
+		</filtering>
+	</question>
+	<!-- #END QUESTION N21 -->
+	
+	<!-- QUESTION N22 -->
+	<question name="n22" template="checkbox_vertical">
+		Ktoré z uvedených portálov zameraných na leteckú dopravu, na predaj leteniek a informácie o leteckých spojeniach poznáte?
+		<next-questions>
+			<question name="n23" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="checkbox" label="">
+				<answer name="a1" text="false" value="1" random="true" label="letenky.sk" />
+				<answer name="a2" text="false" value="2" random="true" label="letenky.cz" />
+				<answer name="a3" text="false" value="3" random="true" label="letuska.cz" />
+				<answer name="a4" text="false" value="4" random="true" label="lacneletenky.sk" />
+				<answer name="a5" text="false" value="5" random="true" label="studentagency.sk" />
+				<answer name="a6" text="false" value="6" random="true" label="pelikan.sk" />
+				<answer name="a7" text="false" value="7" random="true" label="ryanair.com" />
+				<answer name="a8" text="false" value="8" random="true" label="travel.sk" />
+				<answer name="a9" text="false" value="9" random="true" label="kolumbus.sk" />
+				<answer name="a10" text="false" value="10" random="true" label="ckm.sk" />
+				<answer name="a11" text="false" value="11" random="true" label="skytravel.sk" />
+				<answer name="a12" text="false" value="12" random="true" label="condor.sk" />
+				<answer name="a13" text="false" value="13" random="true" label="malyprinc.sk" />
+				<answer name="a14" text="false" value="14" random="true" label="hviezda.sk" />
+				<answer name="a15" text="true" value="15" label="iné, uveďte aký:" />
+				<answer name="a16" text="false" value="16" label="žiaden z uvedených portálov" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n22" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N22 -->
+	
+	<!-- QUESTION N23 -->
+	<question name="n23" template="checkbox_vertical">
+		Vyhľadávali ste už informácie ohľadom leteniek alebo leteckej prepravy cez internet?
+		<next-questions>
+			<question name="n24" />
+			<question name="n25" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="checkbox" label="">
+				<answer name="a1" text="false" value="1" label="na internete som si pozeral/-a ceny leteniek" />
+				<answer name="a2" text="false" value="2" label="na internete som si pozeral/-a možnosť leteckého spojenia do konkrétneho miesta" />
+				<answer name="a3" text="false" value="3" label="na internete som si rezervoval/-a letenku" />
+				<answer name="a4" text="true" value="4" label="na internete som vyhľadával/-a iné informácie ohľadom leteckej prepravy, uveďte aké:" />
+				<answer name="a5" text="false" value="5" label="na internete som nehľadal/-a ešte žiadne informácie ohľadom leteniek či leteckej prepravy" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n23" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N23 -->
+	
+	<!-- QUESTION N24 -->
+	<question name="n24" template="radio_vertical">
+		Na ktorom portáli najčastejšie vyhľadávate informácie o leteckom spojení, letenkách alebo by ste si rezervovali letenku?
+		<next-questions>
+			<question name="n25" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" random="true" label="letenky.sk" />
+				<answer name="a2" text="false" value="2" random="true" label="letenky.cz" />
+				<answer name="a3" text="false" value="3" random="true" label="letuska.cz" />
+				<answer name="a4" text="false" value="4" random="true" label="lacneletenky.sk" />
+				<answer name="a5" text="false" value="5" random="true" label="studentagency.sk" />
+				<answer name="a6" text="false" value="6" random="true" label="pelikan.sk" />
+				<answer name="a7" text="false" value="7" random="true" label="ryanair.com" />
+				<answer name="a8" text="false" value="8" random="true" label="travel.sk" />
+				<answer name="a9" text="false" value="9" random="true" label="kolumbus.sk" />
+				<answer name="a10" text="false" value="10" random="true" label="ckm.sk" />
+				<answer name="a11" text="false" value="11" random="true" label="skytravel.sk" />
+				<answer name="a12" text="false" value="12" random="true" label="condor.sk" />
+				<answer name="a13" text="false" value="13" random="true" label="malyprinc.sk" />
+				<answer name="a14" text="false" value="14" random="true" label="hviezda.sk" />
+				<answer name="a15" text="true" value="15" label="iné, uveďte aký:" />
+				<answer name="a16" text="false" value="16" label="žiaden z uvedených portálov" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n24" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+		<filtering>
+			<and>
+				<constraint question="n23" question-group="qg1" answer-group="ag1" answer="a4" rule="empty" />
+				<constraint question="n23" question-group="qg1" answer-group="ag1" answer="a5" rule="empty" />
+			</and>
+		</filtering>
+	</question>
+	<!-- #END QUESTION N24 -->
+	
+	<!-- QUESTION N25 -->
+	<question name="n25" template="text">
+		Vymenujte prosim, ktoré slovenské internetove aukcie poznáte
+		<next-questions>
+			<question name="n26" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="text" label="">
+				<answer name="a1" text="false" value="1" label="a)" />
+				<answer name="a2" text="false" value="2" label="b)" />
+				<answer name="a3" text="false" value="3" label="c)" />
+				<answer name="a4" text="false" value="4" label="d)" />
+				<answer name="a5" text="false" value="5" label="e)" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n25" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N25 -->
+	
+	<!-- QUESTION N26 -->
+	<question name="n26" template="radio_vertical">
+		Využili ste uz niekedy internetovú aukciu na zakúpenie tovaru?
+		<next-questions>
+			<question name="n27" />
+		</next-questions>
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="radio" label="">
+				<answer name="a1" text="false" value="1" label="Áno, viackrát" />
+				<answer name="a2" text="false" value="2" label="Áno, raz" />
+				<answer name="a3" text="false" value="3" label="Zatiaľ nie, ale uvažujem o tom" />
+				<answer name="a4" text="false" value="4" label="Zatiaľ nie a ani o tom neuvažujem" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n24" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+	</question>
+	<!-- #END QUESTION N26 -->
+	
+	<!-- QUESTION N27 -->
+	<question name="n27" template="text">
+		Vymenujte prosim, ktoré internetové aukcie ste využili za posledných 6 mesiacov?
+		<question-group name="qg1" label="subquestion1">
+			<answer-group name="ag1" type="text" label="">
+				<answer name="a1" text="false" value="1" label="a)" />
+				<answer name="a2" text="false" value="2" label="b)" />
+				<answer name="a3" text="false" value="3" label="c)" />
+				<answer name="a4" text="false" value="4" label="d)" />
+				<answer name="a5" text="false" value="5" label="e)" />
+			</answer-group>
+		</question-group>
+		<validation>
+			<constraint question="n27" question-group="qg1" answer-group="ag1" answer="any" rule="not-empty" />
+		</validation>
+		<filtering>
+			<and>
+				<constraint question="n26" question-group="qg1" answer-group="ag1" answer="a3" rule="empty" />
+				<constraint question="n26" question-group="qg1" answer-group="ag1" answer="a4" rule="empty" />
+			</and>
+		</filtering>
+	</question>
+	<!-- #END QUESTION N27 -->
+</questionnaire>
